@@ -1,0 +1,22 @@
+{
+  "name": "react-native-magic-toast-example",
+  "displayName": "MagicToast Example",
+  "expo": {
+    "name": "react-native-magic-toast-example",
+    "slug": "react-native-magic-toast-example",
+    "description": "Example app for react-native-magic-toast",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
