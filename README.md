@@ -9,15 +9,36 @@ A beautiful imperative toast you can call from anywhere!
 ## Installation
 
 ```sh
-npm install react-native-magic-toast
+yarn add react-native-magic-toast react-native-magic-modal react-native-safe-area-context
 ```
 
+This toast uses [react-native-magic-modal](https://github.com/GSTJ/react-native-magic-modal) as a base for displaying it anywhere. `react-native-safe-area-context` is used to prevent the modal message from being underneath safe areas
+
 ## Usage
+
+Insert a SafeAreaProvider encapsulating your app and a MagicModalPortal right beneath it
+
+```js
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { MagicModalPortal } from 'react-native-magic-modal';
+
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <MagicModalPortal />
+      // <Router />
+    </SafeAreaProvider>
+  );
+}
+```
+
+Then, you are free to use the magicToast as shown from anywhere you want.
 
 ```js
 import { magicToast } from 'react-native-magic-toast';
 
 // ...
+
 magicToast.alert('Oops! Something went wrong 😬');
 ```
 
