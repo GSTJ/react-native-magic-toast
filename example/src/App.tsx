@@ -1,19 +1,27 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-magic-toast';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { magicToast } from 'react-native-magic-toast';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { MagicModalPortal } from 'react-native-magic-modal';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    magicToast.alert('It works!!');
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <SafeAreaProvider>
+      <MagicModalPortal />
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => magicToast.alert('Oops! Something went wrong 😬')}
+        >
+          <Text style={styles.buttonText}>Press me!</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaProvider>
   );
 }
 
@@ -23,9 +31,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  button: {
+    height: 40,
+    paddingHorizontal: 20,
+    backgroundColor: '#000000',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
   },
 });

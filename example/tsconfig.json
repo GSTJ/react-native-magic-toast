@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "react-native-magic-toast": ["../src/index"]
+    }
+  },
+  "extends": "expo/tsconfig.base"
+}
