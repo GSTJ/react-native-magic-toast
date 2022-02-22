@@ -12,7 +12,7 @@ A beautiful imperative toast you can call from anywhere!
 yarn add react-native-magic-toast react-native-magic-modal react-native-safe-area-context
 ```
 
-This toast uses [react-native-magic-modal](https://github.com/GSTJ/react-native-magic-modal) as a base for displaying it anywhere. `react-native-safe-area-context` is used to prevent the modal message from being underneath safe areas
+This toast uses [react-native-magic-modal](https://github.com/GSTJ/react-native-magic-modal) as a base for displaying it anywhere. [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) is here to prevent the modal message from being underneath safe areas.
 
 ## Usage
 
