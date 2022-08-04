@@ -1,4 +1,4 @@
-![Cover_Magic_Toast](https://user-images.githubusercontent.com/50031755/182900594-71913e2b-4ad6-4b2d-a429-30e44006aeb6.png)
+![React Native Magic Toast Cover](https://user-images.githubusercontent.com/50031755/182908210-860f7e09-a644-4a74-8000-46f7f5bbf01e.png)
 
 # React Native Magic Toast 🦄
 A beautiful Toast library that can be called imperatively from anywhere!
