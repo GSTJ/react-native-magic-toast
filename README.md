@@ -1,6 +1,7 @@
-# react-native-magic-toast 🦄
+![GH_Cover](https://user-images.githubusercontent.com/50031755/182890524-65451799-a994-4f95-a6f6-89b3ebaf1e98.png)
 
-A beautiful imperative toast you can call from anywhere!
+# React Native Magic Toast 🦄
+A beautiful Toast library that can be called imperatively from anywhere!
 
 | IOS                                                                                                                           | Android                                                                                                                       |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -48,4 +49,6 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License
 
-MIT
+[MIT](LICENSE.md)
+
+Made with 💖 by [Gabriel Taveira](https://github.com/GSTJ)
