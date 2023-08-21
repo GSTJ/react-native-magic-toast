@@ -7,7 +7,7 @@ import { MagicModalPortal } from 'react-native-magic-modal';
 
 export default function App() {
   React.useEffect(() => {
-    magicToast.alert('It works!!');
+    magicToast.success('It works!!');
   }, []);
 
   return (
@@ -18,7 +18,16 @@ export default function App() {
           style={styles.button}
           onPress={() => magicToast.alert('Oops! Something went wrong 😬')}
         >
-          <Text style={styles.buttonText}>Press me!</Text>
+          <Text style={styles.buttonText}>Press me to fire an alert!</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => magicToast.success('Hurray! It works 🎉')}
+        >
+          <Text style={styles.buttonText}>
+            Press me to fire a success toast!
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaProvider>
@@ -30,6 +39,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 15,
   },
   button: {
     height: 40,
