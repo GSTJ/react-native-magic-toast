@@ -4,8 +4,8 @@ exports[`MagicToast renders alerts correctly 1`] = `
 <View
   pointerEvents="box-none"
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "black",
         "bottom": 0,
         "left": 0,
@@ -14,7 +14,7 @@ exports[`MagicToast renders alerts correctly 1`] = `
         "right": 0,
         "top": 0,
       },
-      Object {
+      {
         "backgroundColor": "transparent",
         "opacity": 1,
         "zIndex": 2,
@@ -23,9 +23,9 @@ exports[`MagicToast renders alerts correctly 1`] = `
   }
 >
   <View
+    collapsable={false}
     deviceHeight={1334}
     deviceWidth={750}
-    forwardedRef={[Function]}
     hideModalContentWhileAnimating={false}
     onBackdropPress={[Function]}
     onModalHide={[Function]}
@@ -52,22 +52,22 @@ exports[`MagicToast renders alerts correctly 1`] = `
     scrollTo={null}
     statusBarTranslucent={true}
     style={
-      Object {
+      {
         "flex": 1,
         "justifyContent": "flex-start",
         "left": 0,
         "margin": 0,
         "opacity": 0,
         "top": 0,
-        "transform": Array [
-          Object {
+        "transform": [
+          {
             "translateY": -100,
           },
         ],
       }
     }
     supportedOrientations={
-      Array [
+      [
         "portrait",
         "landscape",
       ]
@@ -77,16 +77,18 @@ exports[`MagicToast renders alerts correctly 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "backgroundColor": "#191919",
             "flexDirection": "row",
+            "gap": 15,
             "padding": 25,
           },
-          Object {
+          {
             "paddingTop": 25,
           },
+          undefined,
         ]
       }
       testID="magic-toast"
@@ -102,15 +104,12 @@ exports[`MagicToast renders alerts correctly 1`] = `
         minX={0}
         minY={0}
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "transparent",
               "borderWidth": 0,
             },
-            Object {
-              "marginRight": 15,
-            },
-            Object {
+            {
               "flex": 0,
               "height": 20,
               "width": 20,
@@ -126,7 +125,7 @@ exports[`MagicToast renders alerts correctly 1`] = `
         <RNSVGGroup
           fill={4294967295}
           propList={
-            Array [
+            [
               "fill",
             ]
           }
@@ -138,10 +137,13 @@ exports[`MagicToast renders alerts correctly 1`] = `
       </RNSVGSvgView>
       <Text
         style={
-          Object {
-            "color": "white",
-            "fontWeight": "bold",
-          }
+          [
+            {
+              "color": "white",
+              "fontWeight": "bold",
+            },
+            undefined,
+          ]
         }
       >
         Taveira
@@ -155,8 +157,8 @@ exports[`MagicToast renders success correctly 1`] = `
 <View
   pointerEvents="box-none"
   style={
-    Array [
-      Object {
+    [
+      {
         "backgroundColor": "black",
         "bottom": 0,
         "left": 0,
@@ -165,7 +167,7 @@ exports[`MagicToast renders success correctly 1`] = `
         "right": 0,
         "top": 0,
       },
-      Object {
+      {
         "backgroundColor": "transparent",
         "opacity": 1,
         "zIndex": 2,
@@ -174,9 +176,9 @@ exports[`MagicToast renders success correctly 1`] = `
   }
 >
   <View
+    collapsable={false}
     deviceHeight={1334}
     deviceWidth={750}
-    forwardedRef={[Function]}
     hideModalContentWhileAnimating={false}
     onBackdropPress={[Function]}
     onModalHide={[Function]}
@@ -203,22 +205,22 @@ exports[`MagicToast renders success correctly 1`] = `
     scrollTo={null}
     statusBarTranslucent={true}
     style={
-      Object {
+      {
         "flex": 1,
         "justifyContent": "flex-start",
         "left": 0,
         "margin": 0,
         "opacity": 0,
         "top": 0,
-        "transform": Array [
-          Object {
+        "transform": [
+          {
             "translateY": -100,
           },
         ],
       }
     }
     supportedOrientations={
-      Array [
+      [
         "portrait",
         "landscape",
       ]
@@ -228,15 +230,20 @@ exports[`MagicToast renders success correctly 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "backgroundColor": "#191919",
             "flexDirection": "row",
+            "gap": 15,
             "padding": 25,
           },
-          Object {
+          {
             "paddingTop": 25,
+          },
+          {
+            "backgroundColor": "#00af98",
+            "gap": 10,
           },
         ]
       }
@@ -244,55 +251,53 @@ exports[`MagicToast renders success correctly 1`] = `
     >
       <RNSVGSvgView
         align="xMidYMid"
-        bbHeight={20}
-        bbWidth={20}
+        bbHeight={25}
+        bbWidth={25}
         fill="white"
         focusable={false}
-        height={20}
+        height={25}
         meetOrSlice={0}
         minX={0}
         minY={0}
         style={
-          Array [
-            Object {
+          [
+            {
               "backgroundColor": "transparent",
               "borderWidth": 0,
             },
-            Object {
-              "marginRight": 15,
-            },
-            Object {
+            {
               "flex": 0,
-              "height": 20,
-              "width": 20,
+              "height": 25,
+              "width": 25,
             },
           ]
         }
-        vbHeight={512}
-        vbWidth={512}
-        width={20}
-        x="0px"
-        y="0px"
+        vbHeight={256}
+        vbWidth={256}
+        width={25}
       >
         <RNSVGGroup
           fill={4294967295}
           propList={
-            Array [
+            [
               "fill",
             ]
           }
         >
           <RNSVGPath
-            d="M501.362 383.95L320.497 51.474c-29.059-48.921-99.896-48.986-128.994 0L10.647 383.95c-29.706 49.989 6.259 113.291 64.482 113.291h361.736c58.174 0 94.203-63.251 64.497-113.291zM256 437.241c-16.538 0-30-13.462-30-30s13.462-30 30-30 30 13.462 30 30-13.462 30-30 30zm30-120c0 16.538-13.462 30-30 30s-30-13.462-30-30v-150c0-16.538 13.462-30 30-30s30 13.462 30 30v150z"
+            d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24Zm45.66 85.66-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32Z"
           />
         </RNSVGGroup>
       </RNSVGSvgView>
       <Text
         style={
-          Object {
-            "color": "white",
-            "fontWeight": "bold",
-          }
+          [
+            {
+              "color": "white",
+              "fontWeight": "bold",
+            },
+            undefined,
+          ]
         }
       >
         Taveira

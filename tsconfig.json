@@ -7,7 +7,6 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext"],
@@ -24,5 +23,5 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["node_modules", "jest.config.js"]
+  "exclude": ["node_modules"]
 }
