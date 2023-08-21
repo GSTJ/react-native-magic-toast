@@ -6,7 +6,7 @@ A beautiful Toast library that can be called imperatively from anywhere!
 
 | IOS                                                                                                                           | Android                                                                                                                       |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| <img src="https://user-images.githubusercontent.com/50031755/155204679-ad8cc6e6-c29b-45a8-9542-1e77b0d7140c.gif" height=600/> | <img src="https://user-images.githubusercontent.com/50031755/155205325-d5f4c239-90b6-432b-9753-afe19d64695c.gif" height=600/> |
+| <img src="https://github.com/GSTJ/react-native-magic-toast/assets/50031755/a9fb45ca-b199-4dcb-9c91-3b5564fbb1af" height=600/> | <img src="https://user-images.githubusercontent.com/50031755/155205325-d5f4c239-90b6-432b-9753-afe19d64695c.gif" height=600/> |
 
 ## Installation
 
