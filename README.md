@@ -1,6 +1,7 @@
 ![React Native Magic Toast Cover](https://user-images.githubusercontent.com/50031755/182908210-860f7e09-a644-4a74-8000-46f7f5bbf01e.png)
 
 # React Native Magic Toast 🦄
+
 A beautiful Toast library that can be called imperatively from anywhere!
 
 | IOS                                                                                                                           | Android                                                                                                                       |
@@ -41,6 +42,21 @@ import { magicToast } from 'react-native-magic-toast';
 // ...
 
 magicToast.alert('Oops! Something went wrong 😬');
+magicToast.success('Hurray! Saved successfully');
+
+// You can also use the show method to render a custom toast
+magicToast.show(() => (
+  /**
+   * Toast.Container is obligatory as it handles the duration, but you are free
+   * to customize the View as you wish. You can change the default background color,
+   * padding, everything! The rest of the components are optional and just help you
+   * to build a toast faster.
+   */
+  <Toast.Container duration={1000}>
+    <MyCustomIcon />
+    <Toast.Message>My custom toast</Toast.Message>
+  </Toast.Container>
+));
 ```
 
 ## Contributing
