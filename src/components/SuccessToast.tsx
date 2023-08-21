@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { SuccessIcon } from '../assets/SuccessIcon';
 import { Toast } from './Toast';
 
@@ -10,10 +10,17 @@ export const SuccessToast: React.FC<MagicToastProps> = ({
   duration,
 }) => {
   return (
-    <Toast.Container duration={duration}>
+    <Toast.Container style={styles.container} duration={duration}>
       <StatusBar barStyle="light-content" />
-      <SuccessIcon fill="white" width={20} height={20} />
+      <SuccessIcon fill="white" width={25} height={25} />
       <Toast.Message>{message}</Toast.Message>
     </Toast.Container>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#00af98',
+    gap: 10,
+  },
+});
