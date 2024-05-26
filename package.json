@@ -161,7 +161,7 @@
     ]
   },
   "dependencies": {
-    "react-native-magic-modal": "^0.1.0",
+    "react-native-magic-modal": "^2.0.4",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-svg": "^12.1.1"
   }

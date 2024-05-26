@@ -1,5 +1,4 @@
-import { magicModal } from 'react-native-magic-modal';
-import type { ModalChildren } from 'react-native-magic-modal/lib/typescript/utils/magicModalHandler';
+import { ModalChildren, magicModal } from 'react-native-magic-modal';
 
 /**
  * Shows a toast with the given component.
@@ -8,9 +7,6 @@ import type { ModalChildren } from 'react-native-magic-modal/lib/typescript/util
 export const show = (component: ModalChildren) =>
   magicModal.show(component, {
     swipeDirection: 'up',
-    hasBackdrop: false,
-    coverScreen: false,
+    hideBackdrop: true,
     style: { justifyContent: 'flex-start' },
-    animationIn: 'fadeInDown',
-    animationOut: 'fadeOutUp',
   });
