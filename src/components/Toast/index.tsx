@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, ViewProps, TextProps, Text } from 'react-native';
-import { magicModal } from 'react-native-magic-modal';
+import { useMagicModal } from 'react-native-magic-modal';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { styles } from './styles';
 
@@ -21,11 +21,12 @@ interface ContainerProps extends ViewProps {
  */
 const Container: React.FC<ContainerProps> = ({ duration = 3000, ...props }) => {
   const { top } = useSafeAreaInsets();
+  const { hide } = useMagicModal();
 
   useEffect(() => {
-    const timeout = setTimeout(magicModal.hide, duration);
+    const timeout = setTimeout(() => hide(), duration);
     return () => clearTimeout(timeout);
-  }, [duration]);
+  }, [duration, hide]);
 
   return (
     <View

@@ -7778,10 +7778,10 @@ react-native-builder-bob@^0.18.2:
   optionalDependencies:
     jetifier "^1.6.6"
 
-react-native-magic-modal@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-magic-modal/-/react-native-magic-modal-2.0.4.tgz#5cb7150982dfb161514b63d4ef9b8ec16c8ccbc2"
-  integrity sha512-8kb3Qfe19OOdZvOPV9pxSFTTxlFqA94Hu6Mzr06zndaOJiue00VrkCWX7vccL2ukzz0G/i0RTS2AzNrIkIsOUQ==
+react-native-magic-modal@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-magic-modal/-/react-native-magic-modal-4.0.5.tgz#bec664e00c5b1324ce69f874ac6b298d73a8fad2"
+  integrity sha512-7ID0+rebmnhDGx8BfT2l4YhcMdys4d08l04Qg7l+aMwRPUBVX3wMs/E0QkNlTJCZXRv9YQWcJK5hgv56581DKQ==
 
 react-native-safe-area-context@^3.4.1:
   version "3.4.1"

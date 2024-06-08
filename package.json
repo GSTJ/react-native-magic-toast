@@ -1,6 +1,6 @@
 {
   "name": "react-native-magic-toast",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "A beautiful, imperative, toast you can call from anywhere!",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -75,7 +75,7 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-magic-modal": "*",
+    "react-native-magic-modal": "^4.0.0",
     "react-native-safe-area-context": "*"
   },
   "jest": {
@@ -161,7 +161,7 @@
     ]
   },
   "dependencies": {
-    "react-native-magic-modal": "^2.0.4",
+    "react-native-magic-modal": "^4.0.5",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-svg": "^12.1.1"
   }
