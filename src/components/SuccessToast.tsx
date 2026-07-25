@@ -3,7 +3,7 @@ import { StatusBar, StyleSheet } from 'react-native';
 import { SuccessIcon } from '../assets/SuccessIcon';
 import { Toast } from './Toast';
 
-import type { MagicToastProps } from 'src/@types/MagicToastProps';
+import type { MagicToastProps } from '../@types/MagicToastProps';
 
 export const SuccessToast: React.FC<MagicToastProps> = ({
   message,
