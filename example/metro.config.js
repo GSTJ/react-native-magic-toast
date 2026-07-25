@@ -1,5 +1,5 @@
 const path = require('path');
-const blacklist = require('metro-config/src/defaults/blacklist');
+const { getDefaultConfig } = require('expo/metro-config');
 const escape = require('escape-string-regexp');
 const pak = require('../package.json');
 
@@ -9,32 +9,28 @@ const modules = Object.keys({
   ...pak.peerDependencies,
 });
 
-module.exports = {
-  projectRoot: __dirname,
-  watchFolders: [root],
+const config = getDefaultConfig(__dirname);
 
-  // We need to make sure that only one version is loaded for peerDependencies
-  // So we blacklist them at the root, and alias them to the versions in example's node_modules
-  resolver: {
-    blacklistRE: blacklist(
-      modules.map(
-        (m) =>
-          new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`)
-      )
-    ),
+config.projectRoot = __dirname;
+config.watchFolders = [root];
 
-    extraNodeModules: modules.reduce((acc, name) => {
-      acc[name] = path.join(__dirname, 'node_modules', name);
-      return acc;
-    }, {}),
-  },
+// We need to make sure that only one version is loaded for peerDependencies
+// So we block them at the root, and alias them to the versions in example's node_modules
+config.resolver.blockList = [
+  ...[config.resolver.blockList ?? []].flat(),
+  ...modules.map(
+    (m) => new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`)
+  ),
+];
 
-  transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: true,
-      },
-    }),
-  },
-};
+config.resolver.extraNodeModules = [
+  ...modules,
+  // The library source lives outside the example's projectRoot, so metro has to
+  // be told where react-native-web is when bundling for web.
+  'react-native-web',
+].reduce((acc, name) => {
+  acc[name] = path.join(__dirname, 'node_modules', name);
+  return acc;
+}, {});
+
+module.exports = config;

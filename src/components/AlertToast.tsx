@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 import { AlertIcon } from '../assets/AlertIcon';
 import { Toast } from './Toast';
 
-import type { MagicToastProps } from 'src/@types/MagicToastProps';
+import type { MagicToastProps } from '../@types/MagicToastProps';
 
 export const AlertToast: React.FC<MagicToastProps> = ({
   message,

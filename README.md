@@ -11,10 +11,25 @@ A beautiful Toast library that can be called imperatively from anywhere!
 ## Installation
 
 ```sh
-yarn add react-native-magic-toast react-native-magic-modal react-native-safe-area-context
+npx expo install react-native-magic-toast react-native-magic-modal react-native-safe-area-context react-native-reanimated react-native-gesture-handler react-native-worklets
 ```
 
 This toast uses [react-native-magic-modal](https://github.com/GSTJ/react-native-magic-modal) as a base for displaying it anywhere. [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) is here to prevent the modal message from being underneath safe areas.
+
+magic-modal v7 sets the floor for the whole stack:
+
+| Package | Minimum |
+| --- | --- |
+| react | 18 |
+| react-native | 0.81 |
+| react-native-reanimated | 4 |
+| react-native-gesture-handler | 2.20 |
+| react-native-worklets | 0.5 |
+| react-native-safe-area-context | 5 |
+
+Reanimated 4 needs its Babel plugin. `babel-preset-expo` adds it for you; outside Expo, put `react-native-worklets/plugin` last in the plugin list of your `babel.config.js`.
+
+If your app can't move to RN 0.81 yet, stay on `react-native-magic-toast@0.4.x`, which tracks magic-modal v4.
 
 ## Usage
 
