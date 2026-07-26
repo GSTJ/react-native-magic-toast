@@ -1,0 +1,48 @@
+name: 🛠️ Branch Checkup
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checkup:
+    name: 👮‍♂️ Lint, Typecheck, Test and Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Setup Repo
+        uses: actions/checkout@v7
+
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: yarn
+
+      # `.yarnrc` points `yarn-path` at scripts/bootstrap.js, which forwards to
+      # yarn whenever arguments are passed and otherwise installs the example
+      # app and the pods too. Passing the flags keeps it to the library.
+      - name: 📦 Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: 🧹 Lint
+        run: yarn lint
+
+      - name: 🧪 Typecheck
+        run: yarn typescript
+
+      - name: 🧪 Test
+        run: yarn test
+
+      # `prepare` runs `bob build`, so the install above already built once.
+      # Running it again is what fails the job if the build breaks.
+      - name: 🛠️ Build
+        run: yarn prepare
