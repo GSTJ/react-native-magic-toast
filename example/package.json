@@ -25,6 +25,9 @@
     "react-native-web": "^0.21.0",
     "react-native-worklets": "~0.8.3"
   },
+  "resolutions": {
+    "uuid": "^11.1.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@babel/runtime": "^7.9.6",
