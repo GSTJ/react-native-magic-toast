@@ -1,6 +1,6 @@
 {
   "name": "react-native-magic-toast",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "A beautiful, imperative, toast you can call from anywhere!",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
