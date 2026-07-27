@@ -18,14 +18,14 @@ This toast uses [react-native-magic-modal](https://github.com/GSTJ/react-native-
 
 magic-modal v7 sets the floor for the whole stack:
 
-| Package | Minimum |
-| --- | --- |
-| react | 18 |
-| react-native | 0.81 |
-| react-native-reanimated | 4 |
-| react-native-gesture-handler | 2.20 |
-| react-native-worklets | 0.5 |
-| react-native-safe-area-context | 5 |
+| Package                        | Minimum |
+| ------------------------------ | ------- |
+| react                          | 18      |
+| react-native                   | 0.81    |
+| react-native-reanimated        | 4       |
+| react-native-gesture-handler   | 2.20    |
+| react-native-worklets          | 0.5     |
+| react-native-safe-area-context | 5       |
 
 Reanimated 4 needs its Babel plugin. `babel-preset-expo` adds it for you; outside Expo, put `react-native-worklets/plugin` last in the plugin list of your `babel.config.js`.
 
@@ -36,8 +36,8 @@ If your app can't move to RN 0.81 yet, stay on `react-native-magic-toast@0.4.x`,
 Insert a SafeAreaProvider encapsulating your app and a MagicModalPortal right beneath it
 
 ```js
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { MagicModalPortal } from 'react-native-magic-modal';
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { MagicModalPortal } from "react-native-magic-modal";
 
 export default function App() {
   return (
@@ -52,12 +52,12 @@ export default function App() {
 Then, you are free to use the magicToast as shown from anywhere you want.
 
 ```js
-import { magicToast } from 'react-native-magic-toast';
+import { magicToast } from "react-native-magic-toast";
 
 // ...
 
-magicToast.alert('Oops! Something went wrong 😬');
-magicToast.success('Hurray! Saved successfully');
+magicToast.alert("Oops! Something went wrong 😬");
+magicToast.success("Hurray! Saved successfully");
 
 // You can also use the show method to render a custom toast
 magicToast.show(() => (

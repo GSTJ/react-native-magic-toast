@@ -1,27 +1,18 @@
 {
+  "extends": "magic-tsconfig/base.json",
   "compilerOptions": {
-    "baseUrl": "./",
+    "jsx": "react-jsx",
     "paths": {
       "react-native-magic-toast": ["./src/index"]
-    },
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "lib": ["esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext"
+    }
   },
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "example/**/*.ts",
+    "example/**/*.tsx",
+    "jest.setup.ts",
+    "oxlint.config.mts",
+    "oxfmt.config.mts"
+  ]
 }

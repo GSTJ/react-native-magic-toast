@@ -1,20 +1,24 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import type { TextStyle, ViewStyle } from "react-native";
 
-interface MagicToastStyles {
+import { StyleSheet } from "react-native";
+
+import { colors } from "../../colors";
+
+type MagicToastStyles = {
   container: ViewStyle;
   message: TextStyle;
-}
+};
 
 export const styles = StyleSheet.create<MagicToastStyles>({
   container: {
-    backgroundColor: '#191919',
+    backgroundColor: colors.background,
     padding: 25,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 15,
   },
   message: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: colors.foreground,
+    fontWeight: "bold",
   },
 });

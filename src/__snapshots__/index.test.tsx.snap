@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MagicToast renders alerts correctly 1`] = `
+exports[`MagicToast renders an alert toast 1`] = `
 <RNSFullWindowOverlay
   style={
     [
@@ -387,7 +387,7 @@ exports[`MagicToast renders alerts correctly 1`] = `
 </RNSFullWindowOverlay>
 `;
 
-exports[`MagicToast renders success correctly 1`] = `
+exports[`MagicToast renders a success toast 1`] = `
 <RNSFullWindowOverlay
   style={
     [

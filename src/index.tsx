@@ -1,6 +1,6 @@
-import { alert } from './utils/alert';
-import { success } from './utils/success';
-import { show } from './utils/show';
+import { alert } from "./utils/alert";
+import { show } from "./utils/show";
+import { success } from "./utils/success";
 
 export const magicToast = {
   alert,

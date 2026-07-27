@@ -1,1 +1,1 @@
-yarn lint && yarn typescript
+pnpm run lint && pnpm run typecheck

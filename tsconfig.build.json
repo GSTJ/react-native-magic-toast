@@ -1,5 +1,11 @@
-
 {
-  "extends": "./tsconfig",
-  "exclude": ["example"]
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // Keeps the emitted declarations at `lib/typescript/src/index.d.ts`, which
+    // is what package.json `types` points at. Without it tsc infers `src` as
+    // the root and drops a directory level.
+    "rootDir": "."
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/__mocks__/**"]
 }
