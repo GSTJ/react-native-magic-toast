@@ -1,6 +1,7 @@
-import React from 'react';
-import { show } from './show';
-import { SuccessToast } from '../components/success-toast';
+import React from "react";
+
+import { SuccessToast } from "../components/success-toast";
+import { show } from "./show";
 
 /**
  * Shows the default success toast.

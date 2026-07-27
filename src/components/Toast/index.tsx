@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
-import type { ViewProps, TextProps} from 'react-native';
-import { View, Text } from 'react-native';
-import { useMagicModal } from 'react-native-magic-modal';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { styles } from './styles';
+import type { ViewProps, TextProps } from "react-native";
 
-export const TOAST_TEST_ID = 'magic-toast';
+import React, { useEffect } from "react";
+import { View, Text } from "react-native";
+
+import { useMagicModal } from "react-native-magic-modal";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import { styles } from "./styles";
+
+export const TOAST_TEST_ID = "magic-toast";
 
 interface ContainerProps extends ViewProps {
   duration?: number;

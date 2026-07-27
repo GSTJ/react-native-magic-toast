@@ -1,6 +1,8 @@
-import React from 'react';
-import type { SvgProps } from 'react-native-svg';
-import { Path, Svg } from 'react-native-svg';
+import type { SvgProps } from "react-native-svg";
+
+import React from "react";
+
+import { Path, Svg } from "react-native-svg";
 
 export const SuccessIcon = (props: Partial<SvgProps>) => (
   <Svg viewBox="0 0 256 256" {...props}>

@@ -1,10 +1,11 @@
-import React from 'react';
-import { StatusBar } from 'react-native';
-import { AlertIcon } from '../assets/alert-icon';
-import { Toast } from './Toast';
-import { colors } from '../colors';
+import type { MagicToastProps } from "../@types/magic-toast-props";
 
-import type { MagicToastProps } from '../@types/magic-toast-props';
+import React from "react";
+import { StatusBar } from "react-native";
+
+import { AlertIcon } from "../assets/alert-icon";
+import { colors } from "../colors";
+import { Toast } from "./Toast";
 
 export const AlertToast: React.FC<MagicToastProps> = ({
   message,

@@ -1,12 +1,19 @@
 {
   "name": "react-native-magic-toast",
   "version": "1.0.0",
-  "packageManager": "pnpm@11.17.0",
   "description": "A beautiful, imperative, toast you can call from anywhere!",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/src/index.d.ts",
-  "react-native": "src/index",
+  "keywords": [
+    "android",
+    "ios",
+    "react-native"
+  ],
+  "homepage": "https://github.com/GSTJ/react-native-magic-toast#readme",
+  "bugs": {
+    "url": "https://github.com/GSTJ/react-native-magic-toast/issues"
+  },
+  "license": "MIT",
+  "author": "Gabriel Taveira <gabrielstaveira@gmail.com> (https://github.com/GSTJ)",
+  "repository": "https://github.com/GSTJ/react-native-magic-toast",
   "source": "src/index",
   "files": [
     "src",
@@ -22,6 +29,13 @@
     "!**/__fixtures__",
     "!**/__mocks__"
   ],
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/src/index.d.ts",
+  "react-native": "src/index",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "bob build",
     "example": "pnpm --filter react-native-magic-toast-example",
@@ -35,20 +49,10 @@
     "test": "jest",
     "typecheck": "tsc --noEmit"
   },
-  "keywords": [
-    "react-native",
-    "ios",
-    "android"
-  ],
-  "repository": "https://github.com/GSTJ/react-native-magic-toast",
-  "author": "Gabriel Taveira <gabrielstaveira@gmail.com> (https://github.com/GSTJ)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/GSTJ/react-native-magic-toast/issues"
-  },
-  "homepage": "https://github.com/GSTJ/react-native-magic-toast#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+  "dependencies": {
+    "react-native-magic-modal": "^7.0.3",
+    "react-native-safe-area-context": "^5.6.2",
+    "react-native-svg": "^15.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
@@ -90,24 +94,26 @@
     "react-native-safe-area-context": ">=5.0.0",
     "react-native-worklets": ">=0.5.0"
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "jest": {
-    "preset": "jest-expo",
-    "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.ts"
-    ],
+    "moduleNameMapper": {
+      "\\.svg": "<rootDir>/src/__mocks__/svgMock.ts"
+    },
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
     ],
-    "moduleNameMapper": {
-      "\\.svg": "<rootDir>/src/__mocks__/svgMock.ts"
-    },
+    "preset": "jest-expo",
     "resolver": "react-native-worklets/jest/resolver.js",
     "setupFiles": [
       "<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.ts"
     ],
     "transform": {
       "\\.cjs$": [
@@ -120,11 +126,24 @@
           }
         }
       ]
-    }
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
+    ]
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
+  "packageManager": "pnpm@11.17.0",
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
     ]
   },
   "release-it": {
@@ -143,24 +162,5 @@
         "preset": "angular"
       }
     }
-  },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      "module",
-      [
-        "typescript",
-        {
-          "project": "tsconfig.build.json"
-        }
-      ]
-    ]
-  },
-  "dependencies": {
-    "react-native-magic-modal": "^7.0.3",
-    "react-native-safe-area-context": "^5.6.2",
-    "react-native-svg": "^15.0.0"
   }
 }

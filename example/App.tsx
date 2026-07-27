@@ -1,18 +1,18 @@
-import * as React from 'react';
+import * as React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { magicToast } from 'react-native-magic-toast';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { MagicModalPortal } from 'react-native-magic-modal';
+import { MagicModalPortal } from "react-native-magic-modal";
+import { magicToast } from "react-native-magic-toast";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const colors = {
-  button: '#000000',
-  buttonText: '#ffffff',
+  button: "#000000",
+  buttonText: "#ffffff",
 };
 
 const App = () => {
   React.useEffect(() => {
-    magicToast.success('It works!!');
+    magicToast.success("It works!!");
   }, []);
 
   return (
@@ -21,14 +21,14 @@ const App = () => {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => magicToast.alert('Oops! Something went wrong 😬')}
+          onPress={() => magicToast.alert("Oops! Something went wrong 😬")}
         >
           <Text style={styles.buttonText}>Press me to fire an alert!</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => magicToast.success('Hurray! It works 🎉')}
+          onPress={() => magicToast.success("Hurray! It works 🎉")}
         >
           <Text style={styles.buttonText}>
             Press me to fire a success toast!
@@ -44,20 +44,20 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     gap: 15,
   },
   button: {
     height: 40,
     paddingHorizontal: 20,
     backgroundColor: colors.button,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 5,
   },
   buttonText: {
     color: colors.buttonText,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });

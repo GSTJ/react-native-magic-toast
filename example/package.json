@@ -1,8 +1,8 @@
 {
   "name": "react-native-magic-toast-example",
-  "description": "Example app for react-native-magic-toast",
   "version": "0.0.1",
   "private": true,
+  "description": "Example app for react-native-magic-toast",
   "main": "index.ts",
   "scripts": {
     "android": "expo start --android",

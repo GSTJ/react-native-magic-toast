@@ -1,6 +1,7 @@
-import React from 'react';
-import { show } from './show';
-import { AlertToast } from '../components/alert-toast';
+import React from "react";
+
+import { AlertToast } from "../components/alert-toast";
+import { show } from "./show";
 
 /**
  * Shows the default alert toast.

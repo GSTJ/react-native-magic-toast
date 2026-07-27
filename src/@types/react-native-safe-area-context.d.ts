@@ -1,8 +1,8 @@
-declare module 'react-native-safe-area-context/jest/mock' {
+declare module "react-native-safe-area-context/jest/mock" {
   import RNSafeAreaContext, {
     Metrics,
     SafeAreaViewProps,
-  } from 'react-native-safe-area-context';
+  } from "react-native-safe-area-context";
 
   export const initialWindowMetrics: Metrics;
   export const SafeAreaProvider: React.FC<SafeAreaViewProps>;
