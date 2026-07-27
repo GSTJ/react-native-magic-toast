@@ -14,35 +14,14 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Lint, format and typecheck come from the shared workflow in GSTJ/magic.
+  # Node version is read from .nvmrc and pnpm from the `packageManager` field.
   checkup:
-    name: 👮‍♂️ Lint, Typecheck, Test and Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🏗 Setup Repo
-        uses: actions/checkout@v7
-
-      - name: 🏗 Setup Node
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: yarn
-
-      # `.yarnrc` points `yarn-path` at scripts/bootstrap.js, which forwards to
-      # yarn whenever arguments are passed and otherwise installs the example
-      # app and the pods too. Passing the flags keeps it to the library.
-      - name: 📦 Install Dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: 🧹 Lint
-        run: yarn lint
-
-      - name: 🧪 Typecheck
-        run: yarn typescript
-
-      - name: 🧪 Test
-        run: yarn test
-
-      # `prepare` runs `bob build`, so the install above already built once.
-      # Running it again is what fails the job if the build breaks.
-      - name: 🛠️ Build
-        run: yarn prepare
+    uses: GSTJ/magic/.github/workflows/ci.yml@main
+    with:
+      # `pnpm install` already runs `prepare`, which is `bob build`. Running it
+      # again is what fails the job if the build breaks.
+      build-command: pnpm run build
+      test-command: pnpm test
+      # No turbo in this repo.
+      turbo-cache: false
