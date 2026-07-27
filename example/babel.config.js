@@ -1,22 +1,11 @@
-const path = require("path");
-const pak = require("../package.json");
-
 module.exports = function (api) {
   api.cache(true);
 
+  // The example depends on the library as `workspace:*`, so pnpm links it into
+  // `example/node_modules`. Metro then reads the root `package.json`, whose
+  // `react-native` field already points at `src`. That is what the
+  // `module-resolver` alias used to do by hand.
   return {
     presets: ["babel-preset-expo"],
-    plugins: [
-      [
-        "module-resolver",
-        {
-          extensions: [".tsx", ".ts", ".js", ".json"],
-          alias: {
-            // For development, we want to alias the library to the source
-            [pak.name]: path.join(__dirname, "..", pak.source),
-          },
-        },
-      ],
-    ],
   };
 };

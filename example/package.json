@@ -20,6 +20,7 @@
     "react-native": "0.83.6",
     "react-native-gesture-handler": "~2.30.0",
     "react-native-magic-modal": "^7.0.3",
+    "react-native-magic-toast": "workspace:*",
     "react-native-reanimated": "4.3.1",
     "react-native-safe-area-context": "~5.6.2",
     "react-native-screens": "~4.23.0",
@@ -30,7 +31,6 @@
     "@babel/core": "^7.28.0",
     "@babel/runtime": "^7.9.6",
     "@types/react": "~19.2.14",
-    "babel-plugin-module-resolver": "^5.0.2",
     "babel-preset-expo": "^55.0.24",
     "magic-tsconfig": "^1.2.0",
     "typescript": "^5.9.3"
