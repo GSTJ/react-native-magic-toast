@@ -1,6 +1,6 @@
 import React from 'react';
 import { show } from './show';
-import { AlertToast } from '../components/AlertToast';
+import { AlertToast } from '../components/alert-toast';
 
 /**
  * Shows the default alert toast.

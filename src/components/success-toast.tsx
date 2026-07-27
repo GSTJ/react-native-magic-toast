@@ -1,9 +1,9 @@
 import React from 'react';
 import { StatusBar, StyleSheet } from 'react-native';
-import { SuccessIcon } from '../assets/SuccessIcon';
+import { SuccessIcon } from '../assets/success-icon';
 import { Toast } from './Toast';
 
-import type { MagicToastProps } from '../@types/MagicToastProps';
+import type { MagicToastProps } from '../@types/magic-toast-props';
 
 export const SuccessToast: React.FC<MagicToastProps> = ({
   message,
