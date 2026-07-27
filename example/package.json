@@ -32,7 +32,7 @@
     "@types/react": "~19.2.14",
     "babel-plugin-module-resolver": "^5.0.2",
     "babel-preset-expo": "^55.0.24",
-    "magic-tsconfig": "^1.1.0",
+    "magic-tsconfig": "^1.2.0",
     "typescript": "^5.9.3"
   }
 }
