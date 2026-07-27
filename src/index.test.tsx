@@ -6,7 +6,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { TOAST_TEST_ID } from './components/Toast';
 
 describe('MagicToast', () => {
-  it('renders alerts correctly', async () => {
+  it('renders an alert toast', () => {
     const component = render(
       <SafeAreaProvider>
         <MagicModalPortal />
@@ -23,7 +23,7 @@ describe('MagicToast', () => {
     expect(component.queryByTestId(TOAST_TEST_ID)).toBeTruthy();
   });
 
-  it('renders success correctly', async () => {
+  it('renders a success toast', () => {
     const component = render(
       <SafeAreaProvider>
         <MagicModalPortal />

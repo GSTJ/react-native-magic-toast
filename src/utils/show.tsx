@@ -1,4 +1,5 @@
-import { ModalChildren, magicModal } from 'react-native-magic-modal';
+import type { ModalChildren} from 'react-native-magic-modal';
+import { magicModal } from 'react-native-magic-modal';
 
 /**
  * Shows a toast with the given component.

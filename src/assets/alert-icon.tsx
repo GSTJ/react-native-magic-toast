@@ -1,5 +1,6 @@
 import React from 'react';
-import { Path, Svg, SvgProps } from 'react-native-svg';
+import type { SvgProps } from 'react-native-svg';
+import { Path, Svg } from 'react-native-svg';
 
 export const AlertIcon = (props: Partial<SvgProps>) => (
   <Svg x="0px" y="0px" viewBox="0 0 512 512" {...props}>

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { View, ViewProps, TextProps, Text } from 'react-native';
+import type { ViewProps, TextProps} from 'react-native';
+import { View, Text } from 'react-native';
 import { useMagicModal } from 'react-native-magic-modal';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { styles } from './styles';

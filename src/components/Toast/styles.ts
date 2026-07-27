@@ -1,4 +1,7 @@
-import { StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import type { TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { colors } from '../../colors';
 
 interface MagicToastStyles {
   container: ViewStyle;
@@ -7,14 +10,14 @@ interface MagicToastStyles {
 
 export const styles = StyleSheet.create<MagicToastStyles>({
   container: {
-    backgroundColor: '#191919',
+    backgroundColor: colors.background,
     padding: 25,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 15,
   },
   message: {
-    color: 'white',
+    color: colors.foreground,
     fontWeight: 'bold',
   },
 });
