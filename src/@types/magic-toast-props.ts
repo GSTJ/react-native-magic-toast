@@ -1,4 +1,4 @@
-export interface MagicToastProps {
+export type MagicToastProps = {
   message: string;
   duration?: number;
-}
+};

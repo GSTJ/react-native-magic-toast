@@ -10,9 +10,9 @@ import { styles } from "./styles";
 
 export const TOAST_TEST_ID = "magic-toast";
 
-interface ContainerProps extends ViewProps {
+type ContainerProps = {
   duration?: number;
-}
+} & ViewProps;
 
 /**
  * The container of the toast. It is responsible for hiding the toast after a

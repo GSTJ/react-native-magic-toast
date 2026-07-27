@@ -4,10 +4,10 @@ import { StyleSheet } from "react-native";
 
 import { colors } from "../../colors";
 
-interface MagicToastStyles {
+type MagicToastStyles = {
   container: ViewStyle;
   message: TextStyle;
-}
+};
 
 export const styles = StyleSheet.create<MagicToastStyles>({
   container: {
