@@ -1,0 +1,75 @@
+name: 🚀 Release
+
+# Pushes to master go through here. The checkup runs first, then
+# tools/release-plan.mjs decides whether the commits since the last tag warrant
+# a release, and only then does the shared workflow run release-it.
+#
+# The plan step is not optional. release-it's Version plugin falls back to a
+# CI-default `patch` when the conventional-changelog plugin has no
+# recommendation, so without it a `ci:`-only push would publish, and so would
+# the `chore: release X` commit release-it pushes at the end of its own run,
+# forever.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # Never cancel: a half-finished release can leave a tag with nothing published
+  # under it. Queue instead.
+  group: magic-toast-release
+  cancel-in-progress: false
+
+jobs:
+  # The same job branch-validation.yml runs on pull requests. Master no longer
+  # runs that workflow, so this is where a push to master gets checked, and the
+  # release below cannot start until it passes.
+  checkup:
+    uses: GSTJ/magic/.github/workflows/ci.yml@v1
+    with:
+      build-command: pnpm run build
+      test-command: pnpm test
+      extra-command: pnpm run changelog:check
+      turbo-cache: false
+
+  plan:
+    name: 🧾 Plan
+    runs-on: ubuntu-latest
+    outputs:
+      release: ${{ steps.plan.outputs.release }}
+      version: ${{ steps.plan.outputs.version }}
+    steps:
+      - name: 🏗 Checkout
+        uses: actions/checkout@v7
+        with:
+          # The plan reads every tag and every commit since the last one.
+          fetch-depth: 0
+
+      - name: 🏗 Setup Node + pnpm
+        uses: GSTJ/magic/.github/actions/setup@v1
+
+      - name: 🧾 Plan the release
+        id: plan
+        run: node tools/release-plan.mjs
+
+  release:
+    needs: [checkup, plan]
+    if: needs.plan.outputs.release == 'true'
+    uses: GSTJ/magic/.github/workflows/release.yml@v1
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # release-it commits the version bump and CHANGELOG.md and pushes both to
+      # master. The ruleset requires a pull request there and bypasses only for
+      # the admin role, which GITHUB_TOKEN does not hold. A GitHub Actions
+      # Integration cannot be added as a bypass actor on a personal account
+      # ("must be part of the ruleset source or owner organization"), so the
+      # push goes out under a PAT that is.
+      GH_PAT: ${{ secrets.GH_PAT }}

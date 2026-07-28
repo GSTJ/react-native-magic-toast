@@ -11,10 +11,16 @@ export default extendConfig(reactNative, {
   ignorePatterns: ["**/lib/**"],
   overrides: [
     {
-      // tools/ holds the changelog CLI. Printing to the terminal is what it is
-      // for — the CI job reads its output.
+      // tools/ holds the changelog and release CLIs. Printing to the terminal
+      // is what they are for — the CI job reads their output. `process.env` is
+      // how a GitHub Actions step is handed GITHUB_OUTPUT and
+      // GITHUB_STEP_SUMMARY; the validated-env-module the rule asks for is an
+      // app-code boundary and there is no app here.
       files: ["tools/**"],
-      rules: { "no-console": "off" },
+      rules: {
+        "no-console": "off",
+        "no-restricted-properties": "off",
+      },
     },
     {
       // release-it's own config. `${version}` and `${changelog}` are release-it
