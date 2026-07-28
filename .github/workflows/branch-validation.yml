@@ -23,5 +23,10 @@ jobs:
       # again is what fails the job if the build breaks.
       build-command: pnpm run build
       test-command: pnpm test
+      # tools/changelog-preset.mjs decides which commit types reach
+      # CHANGELOG.md, and getting it wrong drops commits with no error
+      # anywhere. This renders a synthetic history through it and fails if a
+      # breaking change goes missing — including one hanging off a hidden type.
+      extra-command: pnpm run changelog:check
       # No turbo in this repo.
       turbo-cache: false

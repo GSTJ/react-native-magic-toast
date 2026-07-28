@@ -9,4 +9,21 @@ import reactNative from "magic-oxlint-config/react-native";
 export default extendConfig(reactNative, {
   // react-native-builder-bob's output directory, so it only applies here.
   ignorePatterns: ["**/lib/**"],
+  overrides: [
+    {
+      // tools/ holds the changelog CLI. Printing to the terminal is what it is
+      // for — the CI job reads its output.
+      files: ["tools/**"],
+      rules: { "no-console": "off" },
+    },
+    {
+      // release-it's own config. `${version}` and `${changelog}` are release-it
+      // placeholders, resolved by its `format()` at release time, so they have
+      // to reach it as literal text rather than as template literals.
+      files: [".release-it.mjs"],
+      rules: {
+        "no-template-curly-in-string": "off",
+      },
+    },
+  ],
 });
