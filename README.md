@@ -51,6 +51,13 @@ export default function App() {
 
 Then, you are free to use the magicToast as shown from anywhere you want.
 
+One ordering rule: `SafeAreaProvider` renders `null` until it has measured its
+insets, so `MagicModalPortal` is not mounted during the first commit. Calling
+`magicToast` from the mount effect of the component that renders the provider
+throws `MagicModalPortal not found`. Call it from a component below the portal,
+or pass `initialMetrics={initialWindowMetrics}` to the provider, which covers
+iOS and Android but not web.
+
 ```js
 import { magicToast } from "react-native-magic-toast";
 
