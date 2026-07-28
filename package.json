@@ -27,7 +27,9 @@
     "!ios/build",
     "!**/__tests__",
     "!**/__fixtures__",
-    "!**/__mocks__"
+    "!**/__mocks__",
+    "!**/__snapshots__",
+    "!**/*.test.*"
   ],
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -104,9 +106,6 @@
     ]
   },
   "jest": {
-    "moduleNameMapper": {
-      "\\.svg": "<rootDir>/src/__mocks__/svgMock.ts"
-    },
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
       "<rootDir>/lib/"
@@ -139,6 +138,7 @@
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
+    "exclude": "**/{__tests__/**,__fixtures__/**,__mocks__/**,__snapshots__/**,*.test.*,*.spec.*}",
     "targets": [
       "commonjs",
       "module",
