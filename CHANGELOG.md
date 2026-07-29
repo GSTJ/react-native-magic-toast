@@ -9,6 +9,36 @@ the commits in each range actually say, which for 0.2.2 and 0.3.1 includes
 breaking changes that never made it into the published release bodies. The tags
 themselves were left alone.
 
+## [1.0.1](https://github.com/GSTJ/react-native-magic-toast/compare/v1.0.0...v1.0.1) (2026-07-29)
+
+### Bug Fixes
+
+* **build:** keep the tests out of the published tarball ([#16](https://github.com/GSTJ/react-native-magic-toast/issues/16)) ([16c66de](https://github.com/GSTJ/react-native-magic-toast/commit/16c66deafa9fc6852a835aacabdfbb62ea2b1cef))
+* **changelog:** write CHANGELOG.md and backfill the history ([#12](https://github.com/GSTJ/react-native-magic-toast/issues/12)) ([da02bd7](https://github.com/GSTJ/react-native-magic-toast/commit/da02bd7beb174e5ac6568cb7009af09c4fb1af44))
+* **deps:** bump magic-oxlint-config to 2.0.0 and drop the eslint tree ([#15](https://github.com/GSTJ/react-native-magic-toast/issues/15)) ([d17640f](https://github.com/GSTJ/react-native-magic-toast/commit/d17640f22aeadbdbc0e56d80cda3afe730e946bb))
+* **example:** fire the first toast below MagicModalPortal ([9e0b7d5](https://github.com/GSTJ/react-native-magic-toast/commit/9e0b7d591759061e90c5026397abc63711fc8415))
+* resolve the oxlint diagnostics the new preset reports ([3f741f4](https://github.com/GSTJ/react-native-magic-toast/commit/3f741f48ee6a8169558393a9b24afa31008bfed2))
+
+### Code Refactoring
+
+* kebab-case filenames ([0dedd82](https://github.com/GSTJ/react-native-magic-toast/commit/0dedd82485c0a2413fbaf3f8a2568731e5bec7b6))
+* use type aliases instead of interfaces ([94d877a](https://github.com/GSTJ/react-native-magic-toast/commit/94d877a8e0a7b3827c8ae7f74bdf3083fcb2bbd8))
+
+### Chores
+
+* **config:** drop the workarounds 1.1.0 made unnecessary ([093e79b](https://github.com/GSTJ/react-native-magic-toast/commit/093e79b389cdb47e971700eeea294a2e3813c2c0))
+* **config:** wire up oxlint, oxfmt and magic-tsconfig ([ed20226](https://github.com/GSTJ/react-native-magic-toast/commit/ed20226e394fe6ebf862a1256ea7e4d5fa1b0f59))
+* **deps:** bump the magic packages to 1.1.0 ([8fbfa76](https://github.com/GSTJ/react-native-magic-toast/commit/8fbfa763cea8d11f28ca7fbd057e1846d6416f5b))
+* **deps:** bump the magic packages to 1.2.0 ([0037ba8](https://github.com/GSTJ/react-native-magic-toast/commit/0037ba87c0ff98828375a8006598d85002a375fc))
+* **deps:** move to pnpm and swap eslint/prettier for the magic stack ([58b06a7](https://github.com/GSTJ/react-native-magic-toast/commit/58b06a7f9a363cfb196ce2503ed6c70a95ea949d))
+* **example:** resolve the library through the workspace link ([#10](https://github.com/GSTJ/react-native-magic-toast/issues/10)) ([6a356bf](https://github.com/GSTJ/react-native-magic-toast/commit/6a356bf699b5a7802a95ced55ce040543dd98747))
+
+### Documentation
+
+* add a security policy ([#13](https://github.com/GSTJ/react-native-magic-toast/issues/13)) ([b773b6f](https://github.com/GSTJ/react-native-magic-toast/commit/b773b6f3f0ba003ca38b75167dab6d73258393a7))
+* **oxlint:** stop citing --print-config as the reason for extendConfig ([964168f](https://github.com/GSTJ/react-native-magic-toast/commit/964168fe15248ead4dafc4d3b09ce369002885cf))
+* say when MagicModalPortal is ready to take a toast ([ca110d9](https://github.com/GSTJ/react-native-magic-toast/commit/ca110d9502c3bc121a03ba80585a1971d6b4e20c))
+
 ## [1.0.0](https://github.com/GSTJ/react-native-magic-toast/compare/v0.4.0...v1.0.0) (2026-07-26)
 
 The toast API itself is unchanged. The break is `react-native-magic-modal`
