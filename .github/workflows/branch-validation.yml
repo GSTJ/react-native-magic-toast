@@ -1,8 +1,8 @@
 name: 🛠️ Branch Checkup
 
+# Pull requests only. release.yml runs the same shared job on master, so
+# leaving `push` here would run every check twice on every merge.
 on:
-  push:
-    branches: [master]
   pull_request:
     branches: [master]
 
