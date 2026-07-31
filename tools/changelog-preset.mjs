@@ -2,25 +2,25 @@
 // ships.
 //
 // The stock preset renders feat, fix, perf and reverts and hides everything
-// else, which is wrong for a package whose `files` field publishes `src/` and
-// `lib/` side by side. A `refactor:` here rewrites both. A `chore(deps):` moves
-// the dependency tree a consumer installs. Hiding those leaves releases that
-// changed the tarball described by an empty section.
+// else, which is wrong for a package that publishes compiled output. A
+// `refactor:` in `src/` is a rewrite of every file in `lib/`. A `chore(deps):`
+// moves the dependency tree a consumer installs. Hiding those leaves releases
+// that changed the tarball described by an empty section.
 //
 // The split is by whether a type can change what npm hands a consumer:
 //
 //   renders   feat fix perf revert   the stock set
 //             build                  bob's targets and tsconfig.build.json
 //                                    decide what lands in lib/
-//             refactor               rewrites src/ and lib/, both published
+//             refactor               rewrites src/, and lib/ is compiled from it
 //             chore                  dependency and config moves ship
 //             docs                   README.md is inside the tarball
 //
 //   hidden    ci                     .github/ is not in `files`
-//             style                  oxfmt does touch published src/, but only
+//             style                  oxfmt reaches lib/ through src/, but only
 //                                    its whitespace — nothing a consumer can
 //                                    observe at runtime or in types
-//             test                   `!**/__tests__` is excluded from `files`
+//             test                   bob's `exclude` keeps tests out of lib/
 //
 // `effect: "changelog"` is the important part: it renders the type without
 // letting it drive the version bump, so a pile of `build:` commits still adds
