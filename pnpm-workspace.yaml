@@ -12,6 +12,14 @@ dedupeDirectDeps: true
 overrides:
   "@types/react": "~19.2.14"
   "uuid": "^11.1.1"
+  # GHSA-mh99-v99m-4gvg / CVE-2026-14257. jest's glob@7 and test-exclude@6 pull
+  # minimatch@3, which pins brace-expansion@1, and 1.1.16 is the vulnerable one.
+  # The fix landed in 1.1.17 and caps how many characters a single `expand()`
+  # may accumulate; nothing under that cap behaves differently, and a glob
+  # pattern that would reach 4M characters of output is not one jest is passing.
+  # Scoped to the 1.x range because the tree also carries brace-expansion@5,
+  # which is already past its own patched version.
+  "brace-expansion@1": "^1.1.17"
 
 # pnpm 11 quarantines releases younger than 24h and enforces it on
 # `--frozen-lockfile`, so CI cannot install these without the exemption.
