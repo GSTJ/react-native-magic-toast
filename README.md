@@ -1,12 +1,38 @@
-![React Native Magic Toast Cover](https://user-images.githubusercontent.com/50031755/182908210-860f7e09-a644-4a74-8000-46f7f5bbf01e.png)
+<p align="center">
+  <img
+    alt="A success toast, an alert toast and a custom toast opening and timing out in the example app"
+    src="https://assets.gabrieltaveira.dev/react-native-magic-toast/demo.gif"
+    width="320"
+  />
+</p>
 
-# React Native Magic Toast 🦄
+<p align="center">Call a toast from anywhere in a React Native app and await the reason it left the screen.</p>
 
-A beautiful Toast library that can be called imperatively from anywhere!
+<p align="center">
+  <a aria-label="npm version" href="https://www.npmjs.com/package/react-native-magic-toast"><img alt="npm version" src="https://shieldcn.dev/npm/react-native-magic-toast.svg?variant=branded&amp;size=xs&amp;mode=light" /></a>
+  <a aria-label="npm downloads" href="https://www.npmjs.com/package/react-native-magic-toast"><img alt="npm downloads" src="https://shieldcn.dev/npm/react-native-magic-toast/downloads.svg?variant=branded&amp;size=xs&amp;mode=light" /></a>
+  <a aria-label="GitHub stars" href="https://github.com/GSTJ/react-native-magic-toast/stargazers"><img alt="GitHub stars" src="https://shieldcn.dev/github/GSTJ/react-native-magic-toast/stars.svg?variant=branded&amp;size=xs&amp;mode=light" /></a>
+  <a aria-label="license" href="https://github.com/GSTJ/react-native-magic-toast/blob/master/LICENSE"><img alt="license" src="https://shieldcn.dev/github/GSTJ/react-native-magic-toast/license.svg?variant=branded&amp;size=xs&amp;mode=light" /></a>
+</p>
 
-| IOS                                                                                                                           | Android                                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| <img src="https://github.com/GSTJ/react-native-magic-toast/assets/50031755/a9fb45ca-b199-4dcb-9c91-3b5564fbb1af" height=600/> | <img src="https://user-images.githubusercontent.com/50031755/155205325-d5f4c239-90b6-432b-9753-afe19d64695c.gif" height=600/> |
+<p align="center">
+  <a href="https://magic-modal.gabrieltaveira.dev/docs/">magic-modal docs</a> | <a href="https://github.com/GSTJ/react-native-magic-toast/issues">Issues</a> | <a href="CONTRIBUTING.md">Contributing</a>
+</p>
+
+## How it works
+
+1. [magic-modal](https://github.com/GSTJ/magic-modal) renders the stack. Mount `MagicModalPortal` once, near the root.
+2. `magicToast.alert`, `.success` and `.show` each push one entry and hand back the handle magic-modal returns.
+3. `Toast.Container` runs the timer that hides it.
+
+```jsx
+import { magicToast } from "react-native-magic-toast";
+
+magicToast.alert("Something went wrong");
+magicToast.success("Saved");
+```
+
+`magicToast.show` takes a component for anything else.
 
 ## Installation
 
@@ -14,9 +40,9 @@ A beautiful Toast library that can be called imperatively from anywhere!
 npx expo install react-native-magic-toast magic-modal react-native-safe-area-context react-native-reanimated react-native-gesture-handler react-native-screens react-native-worklets
 ```
 
-This toast uses [magic-modal](https://github.com/GSTJ/magic-modal) as a base for displaying it anywhere. [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) is here to prevent the modal message from being underneath safe areas.
+Install `magic-modal` yourself and keep one copy of it. Your app mounts the portal and this package calls into the same module instance. A second copy leaves you with a portal ref nothing ever fills. [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) keeps the message clear of the status bar.
 
-magic-modal v10 sets the floor for the whole stack:
+magic-modal v10 requires these minimums:
 
 | Package                        | Minimum |
 | ------------------------------ | ------- |
@@ -30,19 +56,17 @@ magic-modal v10 sets the floor for the whole stack:
 
 Reanimated 4 needs its Babel plugin. `babel-preset-expo` adds it for you; outside Expo, put `react-native-worklets/plugin` last in the plugin list of your `babel.config.js`.
 
-Install magic-modal yourself and keep one copy of it. Your application mounts the portal, and this package calls into the same module instance; a second copy has a portal ref nothing ever fills.
-
-Older versions of this package depended on `react-native-magic-modal`, which is the same library under its previous name. Uninstall it once nothing else in your tree imports it.
-
 If your app can't move to RN 0.81 yet, stay on `react-native-magic-toast@0.4.x`, which tracks magic-modal v4.
 
-Web is out of scope here. `magic-modal` itself runs in the browser — import it directly and render your own toast component through it.
+Older versions of this package depended on `react-native-magic-modal`, the same library under its previous name. Uninstall it once nothing else in your tree imports it.
 
-## Usage
+On the web, use magic-modal directly and render your own toast component through it.
 
-Mount `MagicModalPortal` inside a `GestureHandlerRootView`, with a `SafeAreaProvider` around it so toasts can read the top inset:
+## Setup
 
-```js
+Mount `MagicModalPortal` inside a `GestureHandlerRootView`, with a `SafeAreaProvider` around it:
+
+```jsx
 import { MagicModalPortal } from "magic-modal";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
@@ -62,65 +86,50 @@ export default function App() {
 }
 ```
 
-The gesture root is required on native. The portal owns the swipe surface a toast is dismissed with, and gesture handling needs a root view above it.
+`GestureHandlerRootView` is required on native: the swipe that takes a toast off screen is a gesture handler and needs a root view above the portal.
 
-Then, you are free to use the magicToast as shown from anywhere you want.
+`SafeAreaProvider` renders `null` until it has measured its insets, so on the first commit there's no portal under it to find, and `magicToast` called from the mount effect of the component that renders the provider throws `MagicModalPortal not found`. `initialWindowMetrics` covers iOS and Android. On the web it's null and does nothing; call the toast from a component below the portal instead.
 
-One ordering rule: `SafeAreaProvider` renders `null` until it has measured its
-insets, so `MagicModalPortal` is not mounted during the first commit. Calling
-`magicToast` from the mount effect of the component that renders the provider
-throws `MagicModalPortal not found`. `initialMetrics={initialWindowMetrics}`,
-as above, covers iOS and Android; on web it is null and does nothing, so there
-call the toast from a component below the portal.
+## Custom toasts
+
+`magicToast.show` renders any component through the same portal, with the same swipe and placement:
 
 ```jsx
 import { Toast, magicToast } from "react-native-magic-toast";
 
-// ...
-
-magicToast.alert("Oops! Something went wrong 😬");
-magicToast.success("Hurray! Saved successfully");
-
-// You can also use the show method to render a custom toast
-magicToast.show(() => (
-  /**
-   * Toast.Container is obligatory as it handles the duration, but you are free
-   * to customize the View as you wish. You can change the default background color,
-   * padding, everything! The rest of the components are optional and just help you
-   * to build a toast faster.
-   */
-  <Toast.Container duration={1000}>
+const UploadFailed = () => (
+  <Toast.Container duration={5000} style={{ backgroundColor: "#3b2f63" }}>
     <MyCustomIcon />
-    <Toast.Message>My custom toast</Toast.Message>
+    <Toast.Message style={{ fontStyle: "italic" }}>
+      Upload failed, we'll retry
+    </Toast.Message>
   </Toast.Container>
-));
+);
+
+magicToast.show(UploadFailed);
 ```
 
-`Toast.Container` takes every `View` prop on top of `duration`, and
-`Toast.Message` every `Text` prop, so the look is yours to override.
-`ToastContainerProps` and `ToastMessageProps` are exported for components that
-wrap them. `TOAST_TEST_ID` is the container's `testID`, for asserting a toast is
-up in tests without matching on its wording.
+A custom toast needs `Toast.Container`, which hides it when `duration` runs out. It takes every `View` prop on top of `duration`, and `Toast.Message` takes every `Text` prop. `ToastContainerProps` and `ToastMessageProps` are exported for components that wrap either one. `TOAST_TEST_ID` is the container's `testID`, for tests that assert a toast is up by ID.
 
-## The handle a toast hands back
+## The handle
 
-Every one of `alert`, `success` and `show` returns magic-modal's `ModalHandle` as-is.
+`alert`, `success` and `show` all return magic-modal's `ModalHandle`.
 
-Await it to find out when, and why, the toast left the screen:
+Await it to find out when the toast left and why:
 
-```js
+```jsx
 import { MagicModalHideReason } from "magic-modal";
 
 const { reason } = await magicToast.success("Saved");
 
 if (reason === MagicModalHideReason.SWIPE_COMPLETE) {
-  // the user swiped it away before it timed out
+  // swiped away before it timed out
 }
 ```
 
-Or keep it, and drive the toast while it is still up:
+Or keep it, and drive the toast while it's still up:
 
-```js
+```jsx
 const toast = magicToast.show(() => <UploadToast progress={0} />);
 
 toast.update(() => <UploadToast progress={50} />);
@@ -128,11 +137,9 @@ toast.hide(); // takes it off screen now
 toast.modalID; // identifies this entry in the stack
 ```
 
-`update`, `hide` and `modalID` hang off the promise object, so anything that
-adopts the handle hands the caller a plain promise without them. Returning it
-from an `async` function is the usual way to lose them:
+`update`, `hide` and `modalID` hang off the promise object itself. Return the handle from an `async` function and the caller receives that function's own promise instead:
 
-```js
+```jsx
 // `modalID`, `update` and `hide` are gone from what the caller receives.
 const notify = async () => magicToast.success("Saved");
 ```
@@ -141,10 +148,8 @@ Return the handle from a normal function, or await it where you show the toast.
 
 ## Contributing
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+See the [contributing guide](CONTRIBUTING.md) for the development workflow.
 
 ## License
 
-[MIT](LICENSE.md)
-
-Made with 💖 by [Gabriel Taveira](https://github.com/GSTJ)
+react-native-magic-toast is licensed under the [MIT License](LICENSE).
