@@ -1,0 +1,17 @@
+appId: com.anonymous.react-native-magic-toast-example
+---
+# The example fires a success toast from its mount effect, so the launch itself
+# is the first thing the recording shows, and it goes away on its own timer.
+- launchApp
+
+# Every wait is a one-pixel swipe in the empty area below the buttons. Maestro
+# has no sleep command, and `waitForAnimationToEnd` returns the moment the
+# screen goes static rather than waiting out a timed auto-hide. 4.3s is the
+# 3s toast plus enough gap that the next tap never lands on a live portal.
+- swipe: { start: "50%,80%", end: "50%,81%", duration: 4300 }
+
+- tapOn: { point: "50%,38%" }
+- swipe: { start: "50%,80%", end: "50%,81%", duration: 4300 }
+
+- tapOn: { point: "50%,51%" }
+- swipe: { start: "50%,80%", end: "50%,81%", duration: 4300 }
