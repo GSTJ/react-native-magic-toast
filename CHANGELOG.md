@@ -9,6 +9,12 @@ the commits in each range actually say, which for 0.2.2 and 0.3.1 includes
 breaking changes that never made it into the published release bodies. The tags
 themselves were left alone.
 
+## [1.2.0](https://github.com/GSTJ/react-native-magic-toast/compare/v1.1.0...v1.2.0) (2026-07-31)
+
+### Features
+
+* **toast:** export the Toast building blocks ([#19](https://github.com/GSTJ/react-native-magic-toast/issues/19)) ([c32f15e](https://github.com/GSTJ/react-native-magic-toast/commit/c32f15e408182f701968d457bb1cbc56b85c3243))
+
 ## [1.1.0](https://github.com/GSTJ/react-native-magic-toast/compare/v1.0.1...v1.1.0) (2026-07-31)
 
 ### Features
