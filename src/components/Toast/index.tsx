@@ -10,9 +10,14 @@ import { styles } from "./styles";
 
 export const TOAST_TEST_ID = "magic-toast";
 
-type ContainerProps = {
+/** Props of {@link Toast.Container}. Every `View` prop, plus `duration`. */
+export type ToastContainerProps = {
+  /** How long the toast stays up, in milliseconds. Defaults to 3000. */
   duration?: number;
 } & ViewProps;
+
+/** Props of {@link Toast.Message}. A `Text`, styled for the toast. */
+export type ToastMessageProps = TextProps;
 
 /**
  * The container of the toast. It is responsible for hiding the toast after a
@@ -23,7 +28,10 @@ type ContainerProps = {
  *    <Toast.Message>My message</Toast.Message>
  *  </Toast.Container>
  */
-const Container: React.FC<ContainerProps> = ({ duration = 3000, ...props }) => {
+const Container: React.FC<ToastContainerProps> = ({
+  duration = 3000,
+  ...props
+}) => {
   const { top } = useSafeAreaInsets();
   const { hide } = useMagicModal();
 
@@ -48,7 +56,7 @@ const Container: React.FC<ContainerProps> = ({ duration = 3000, ...props }) => {
  *    <Toast.Message>My message</Toast.Message>
  *  </Toast.Container>
  */
-const Message: React.FC<TextProps> = (props) => (
+const Message: React.FC<ToastMessageProps> = (props) => (
   <Text {...props} style={[styles.message, props.style]} />
 );
 

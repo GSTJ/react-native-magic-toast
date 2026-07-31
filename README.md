@@ -73,8 +73,8 @@ throws `MagicModalPortal not found`. `initialMetrics={initialWindowMetrics}`,
 as above, covers iOS and Android; on web it is null and does nothing, so there
 call the toast from a component below the portal.
 
-```js
-import { magicToast } from "react-native-magic-toast";
+```jsx
+import { Toast, magicToast } from "react-native-magic-toast";
 
 // ...
 
@@ -95,6 +95,12 @@ magicToast.show(() => (
   </Toast.Container>
 ));
 ```
+
+`Toast.Container` takes every `View` prop on top of `duration`, and
+`Toast.Message` every `Text` prop, so the look is yours to override.
+`ToastContainerProps` and `ToastMessageProps` are exported for components that
+wrap them. `TOAST_TEST_ID` is the container's `testID`, for asserting a toast is
+up in tests without matching on its wording.
 
 ## The handle a toast hands back
 

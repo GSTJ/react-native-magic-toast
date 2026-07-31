@@ -3,9 +3,9 @@ import type { ModalHandle } from "magic-modal";
 import * as React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import { MagicModalPortal, useMagicModal } from "magic-modal";
+import { MagicModalPortal } from "magic-modal";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { magicToast } from "react-native-magic-toast";
+import { Toast, magicToast } from "react-native-magic-toast";
 import {
   SafeAreaProvider,
   initialWindowMetrics,
@@ -20,26 +20,20 @@ const colors = {
 };
 
 /**
- * A toast built from scratch, to show what `magicToast.show` takes: any
+ * A toast of the app's own, to show what `magicToast.show` takes: any
  * component, rendered by the portal with the toast's swipe and placement.
  *
- * It runs its own timer because `Toast.Container` — the piece that owns the
- * duration — is not exported from the package yet.
+ * `Toast.Container` is the piece that owns the duration, so the toast does not
+ * need a timer of its own. Everything about the look is overridden here through
+ * ordinary `View` props.
  */
-const CustomToast = () => {
-  const { hide } = useMagicModal();
-
-  React.useEffect(() => {
-    const timeout = setTimeout(() => hide(), 3000);
-    return () => clearTimeout(timeout);
-  }, [hide]);
-
-  return (
-    <View style={styles.customToast}>
-      <Text style={styles.customToastText}>A toast of my own 🎨</Text>
-    </View>
-  );
-};
+const CustomToast = () => (
+  <Toast.Container duration={3000} style={styles.customToast}>
+    <Toast.Message style={styles.customToastText}>
+      A toast of my own 🎨
+    </Toast.Message>
+  </Toast.Container>
+);
 
 /**
  * The demo screen. `MagicModalPortal` is a sibling below it, which is fine:
@@ -148,10 +142,7 @@ const styles = StyleSheet.create({
   },
   customToast: {
     backgroundColor: colors.customToast,
-    paddingTop: 70,
-    paddingBottom: 25,
-    paddingHorizontal: 25,
-    alignItems: "center",
+    justifyContent: "center",
   },
   customToastText: {
     color: colors.customToastText,
