@@ -1,7 +1,7 @@
 import React from "react";
 
 import { render, act } from "@testing-library/react-native";
-import { MagicModalPortal } from "react-native-magic-modal";
+import { MagicModalPortal } from "magic-modal";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { TOAST_TEST_ID } from "./components/Toast";

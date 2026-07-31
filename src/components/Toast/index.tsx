@@ -3,7 +3,7 @@ import type { ViewProps, TextProps } from "react-native";
 import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 
-import { useMagicModal } from "react-native-magic-modal";
+import { useMagicModal } from "magic-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { styles } from "./styles";
