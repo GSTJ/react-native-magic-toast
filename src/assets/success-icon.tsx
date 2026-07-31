@@ -1,11 +1,51 @@
-import type { SvgProps } from "react-native-svg";
+import type { IconProps } from "../@types/icon-props";
+
+import type { ViewStyle } from "react-native";
 
 import React from "react";
+import { StyleSheet, View } from "react-native";
 
-import { Path, Svg } from "react-native-svg";
+import { colors } from "../colors";
 
-export const SuccessIcon = (props: Partial<SvgProps>) => (
-  <Svg viewBox="0 0 256 256" {...props}>
-    <Path d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24Zm45.66 85.66-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32Z" />
-  </Svg>
-);
+/**
+ * A check mark.
+ *
+ * It is one `View` with two of its four borders drawn, turned 45°: the right
+ * and bottom edges of a box become the short and long strokes of a tick. Every
+ * measurement is a fraction of `size`, so the stroke stays in proportion at any
+ * size.
+ */
+export const SuccessIcon = ({
+  size = 25,
+  color = colors.foreground,
+}: IconProps) => {
+  const box: ViewStyle = { width: size, height: size };
+
+  const tick: ViewStyle = {
+    width: size * 0.36,
+    height: size * 0.66,
+    // Rotating about the centre of the box leaves the tick sitting low, since
+    // the stroke only occupies two of the four edges. This lifts it back onto
+    // the optical centre.
+    marginTop: -size * 0.1,
+    borderColor: color,
+    borderRightWidth: size * 0.12,
+    borderBottomWidth: size * 0.12,
+  };
+
+  return (
+    <View style={[styles.box, box]}>
+      <View style={[styles.tick, tick]} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  box: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  tick: {
+    transform: [{ rotate: "45deg" }],
+  },
+});

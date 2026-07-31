@@ -1,11 +1,52 @@
-import type { SvgProps } from "react-native-svg";
+import type { IconProps } from "../@types/icon-props";
+
+import type { ViewStyle } from "react-native";
 
 import React from "react";
+import { StyleSheet, View } from "react-native";
 
-import { Path, Svg } from "react-native-svg";
+import { colors } from "../colors";
 
-export const AlertIcon = (props: Partial<SvgProps>) => (
-  <Svg x="0px" y="0px" viewBox="0 0 512 512" {...props}>
-    <Path d="M501.362 383.95L320.497 51.474c-29.059-48.921-99.896-48.986-128.994 0L10.647 383.95c-29.706 49.989 6.259 113.291 64.482 113.291h361.736c58.174 0 94.203-63.251 64.497-113.291zM256 437.241c-16.538 0-30-13.462-30-30s13.462-30 30-30 30 13.462 30 30-13.462 30-30 30zm30-120c0 16.538-13.462 30-30 30s-30-13.462-30-30v-150c0-16.538 13.462-30 30-30s30 13.462 30 30v150z" />
-  </Svg>
-);
+/**
+ * An exclamation mark: a rounded bar over a dot.
+ *
+ * Both are `View`s with a border radius of half their width, so the bar is a
+ * stadium and the dot a circle. Every measurement is a fraction of `size`.
+ */
+export const AlertIcon = ({
+  size = 20,
+  color = colors.foreground,
+}: IconProps) => {
+  const stroke = size * 0.16;
+
+  const box: ViewStyle = { width: size, height: size };
+
+  const bar: ViewStyle = {
+    width: stroke,
+    height: size * 0.46,
+    borderRadius: stroke / 2,
+    backgroundColor: color,
+  };
+
+  const dot: ViewStyle = {
+    width: stroke,
+    height: stroke,
+    borderRadius: stroke / 2,
+    marginTop: size * 0.12,
+    backgroundColor: color,
+  };
+
+  return (
+    <View style={[styles.box, box]}>
+      <View style={bar} />
+      <View style={dot} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  box: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

@@ -327,57 +327,42 @@ exports[`MagicToast renders a success toast 1`] = `
               }
               testID="magic-toast"
             >
-              <RNSVGSvgView
-                align="xMidYMid"
-                bbHeight={25}
-                bbWidth={25}
-                fill="white"
-                focusable={false}
-                height={25}
-                meetOrSlice={0}
-                minX={0}
-                minY={0}
+              <View
                 style={
                   [
                     {
-                      "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "alignItems": "center",
+                      "justifyContent": "center",
                     },
                     {
-                      "flex": 0,
                       "height": 25,
                       "width": 25,
                     },
                   ]
                 }
-                vbHeight={256}
-                vbWidth={256}
-                width={25}
               >
-                <RNSVGGroup
-                  fill={
-                    {
-                      "payload": 4294967295,
-                      "type": 0,
-                    }
-                  }
-                  propList={
+                <View
+                  style={
                     [
-                      "fill",
+                      {
+                        "transform": [
+                          {
+                            "rotate": "45deg",
+                          },
+                        ],
+                      },
+                      {
+                        "borderBottomWidth": 3,
+                        "borderColor": "white",
+                        "borderRightWidth": 3,
+                        "height": 16.5,
+                        "marginTop": -2.5,
+                        "width": 9,
+                      },
                     ]
                   }
-                >
-                  <RNSVGPath
-                    d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24Zm45.66 85.66-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32Z"
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
-                    }
-                  />
-                </RNSVGGroup>
-              </RNSVGSvgView>
+                />
+              </View>
               <Text
                 style={
                   [
@@ -724,59 +709,42 @@ exports[`MagicToast renders an alert toast 1`] = `
               }
               testID="magic-toast"
             >
-              <RNSVGSvgView
-                align="xMidYMid"
-                bbHeight={20}
-                bbWidth={20}
-                fill="white"
-                focusable={false}
-                height={20}
-                meetOrSlice={0}
-                minX={0}
-                minY={0}
+              <View
                 style={
                   [
                     {
-                      "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "alignItems": "center",
+                      "justifyContent": "center",
                     },
                     {
-                      "flex": 0,
                       "height": 20,
                       "width": 20,
                     },
                   ]
                 }
-                vbHeight={512}
-                vbWidth={512}
-                width={20}
-                x="0px"
-                y="0px"
               >
-                <RNSVGGroup
-                  fill={
+                <View
+                  style={
                     {
-                      "payload": 4294967295,
-                      "type": 0,
+                      "backgroundColor": "white",
+                      "borderRadius": 1.6,
+                      "height": 9.200000000000001,
+                      "width": 3.2,
                     }
                   }
-                  propList={
-                    [
-                      "fill",
-                    ]
-                  }
-                >
-                  <RNSVGPath
-                    d="M501.362 383.95L320.497 51.474c-29.059-48.921-99.896-48.986-128.994 0L10.647 383.95c-29.706 49.989 6.259 113.291 64.482 113.291h361.736c58.174 0 94.203-63.251 64.497-113.291zM256 437.241c-16.538 0-30-13.462-30-30s13.462-30 30-30 30 13.462 30 30-13.462 30-30 30zm30-120c0 16.538-13.462 30-30 30s-30-13.462-30-30v-150c0-16.538 13.462-30 30-30s30 13.462 30 30v150z"
-                    fill={
-                      {
-                        "payload": 4278190080,
-                        "type": 0,
-                      }
+                />
+                <View
+                  style={
+                    {
+                      "backgroundColor": "white",
+                      "borderRadius": 1.6,
+                      "height": 3.2,
+                      "marginTop": 2.4,
+                      "width": 3.2,
                     }
-                  />
-                </RNSVGGroup>
-              </RNSVGSvgView>
+                  }
+                />
+              </View>
               <Text
                 style={
                   [

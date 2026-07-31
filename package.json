@@ -52,9 +52,6 @@
     "test": "jest",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "react-native-svg": "^15.0.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@commitlint/config-conventional": "^21.2.0",
@@ -132,7 +129,7 @@
       ]
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)"
     ]
   },
   "packageManager": "pnpm@11.17.0",
