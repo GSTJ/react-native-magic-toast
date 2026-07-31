@@ -9,6 +9,16 @@ the commits in each range actually say, which for 0.2.2 and 0.3.1 includes
 breaking changes that never made it into the published release bodies. The tags
 themselves were left alone.
 
+## [1.2.1](https://github.com/GSTJ/react-native-magic-toast/compare/v1.2.0...v1.2.1) (2026-07-31)
+
+### Bug Fixes
+
+* **packaging:** add an exports map and drop the phantom native entries ([#21](https://github.com/GSTJ/react-native-magic-toast/issues/21)) ([af56907](https://github.com/GSTJ/react-native-magic-toast/commit/af569079238fa82dbae79180fc712b938a5f0e5b))
+
+### Code Refactoring
+
+* **toast:** draw the icons with views and drop react-native-svg ([#20](https://github.com/GSTJ/react-native-magic-toast/issues/20)) ([191029c](https://github.com/GSTJ/react-native-magic-toast/commit/191029c976ba43ba124d6302455dd9e6121a826f))
+
 ## [1.2.0](https://github.com/GSTJ/react-native-magic-toast/compare/v1.1.0...v1.2.0) (2026-07-31)
 
 ### Features
