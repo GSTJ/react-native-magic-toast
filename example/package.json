@@ -1,0 +1,38 @@
+{
+  "name": "react-native-magic-toast-example",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Example app for react-native-magic-toast",
+  "main": "index.ts",
+  "scripts": {
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "start": "expo start",
+    "test": "jest",
+    "typecheck": "tsc --noEmit",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~55.0.12",
+    "expo": "^55.0.28",
+    "magic-modal": "^10.2.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-native": "0.83.6",
+    "react-native-gesture-handler": "~2.30.0",
+    "react-native-magic-toast": "workspace:*",
+    "react-native-reanimated": "4.3.1",
+    "react-native-safe-area-context": "~5.6.2",
+    "react-native-screens": "~4.23.0",
+    "react-native-web": "^0.21.0",
+    "react-native-worklets": "~0.8.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/runtime": "^7.9.6",
+    "@types/react": "~19.2.14",
+    "babel-preset-expo": "^55.0.24",
+    "magic-tsconfig": "^1.2.0",
+    "typescript": "^5.9.3"
+  }
+}

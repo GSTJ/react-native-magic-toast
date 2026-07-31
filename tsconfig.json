@@ -1,0 +1,18 @@
+{
+  "extends": "magic-tsconfig/base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "paths": {
+      "react-native-magic-toast": ["./src/index"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "example/**/*.ts",
+    "example/**/*.tsx",
+    "jest.setup.ts",
+    "oxlint.config.mts",
+    "oxfmt.config.mts"
+  ]
+}

@@ -1,0 +1,32 @@
+name: 🛠️ Branch Checkup
+
+# Pull requests only. release.yml runs the same shared job on master, so
+# leaving `push` here would run every check twice on every merge.
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Lint, format and typecheck come from the shared workflow in GSTJ/magic.
+  # Node version is read from .nvmrc and pnpm from the `packageManager` field.
+  checkup:
+    uses: GSTJ/magic/.github/workflows/ci.yml@v1
+    with:
+      # `pnpm install` already runs `prepare`, which is `bob build`. Running it
+      # again is what fails the job if the build breaks.
+      build-command: pnpm run build
+      test-command: pnpm test
+      # tools/changelog-preset.mjs decides which commit types reach
+      # CHANGELOG.md, and getting it wrong drops commits with no error
+      # anywhere. This renders a synthetic history through it and fails if a
+      # breaking change goes missing — including one hanging off a hidden type.
+      extra-command: pnpm run changelog:check
+      # No turbo in this repo.
+      turbo-cache: false

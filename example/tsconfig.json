@@ -1,0 +1,9 @@
+{
+  "extends": ["expo/tsconfig.base", "magic-tsconfig/expo.json"],
+  "compilerOptions": {
+    "paths": {
+      "react-native-magic-toast": ["../src/index"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "expo-env.d.ts"]
+}
