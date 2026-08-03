@@ -29,7 +29,7 @@ jobs:
   # runs that workflow, so this is where a push to master gets checked, and the
   # release below cannot start until it passes.
   checkup:
-    uses: GSTJ/magic/.github/workflows/ci.yml@v1
+    uses: GSTJ/magic/.github/workflows/ci.yml@aa331e83282c2794edd474646c671f036dfabee0 # v1
     with:
       build-command: pnpm run build
       test-command: pnpm test
@@ -44,13 +44,13 @@ jobs:
       version: ${{ steps.plan.outputs.version }}
     steps:
       - name: 🏗 Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           # The plan reads every tag and every commit since the last one.
           fetch-depth: 0
 
       - name: 🏗 Setup Node + pnpm
-        uses: GSTJ/magic/.github/actions/setup@v1
+        uses: GSTJ/magic/.github/actions/setup@aa331e83282c2794edd474646c671f036dfabee0 # v1
 
       - name: 🧾 Plan the release
         id: plan
@@ -59,7 +59,7 @@ jobs:
   release:
     needs: [checkup, plan]
     if: needs.plan.outputs.release == 'true'
-    uses: GSTJ/magic/.github/workflows/release.yml@v1
+    uses: GSTJ/magic/.github/workflows/release.yml@aa331e83282c2794edd474646c671f036dfabee0 # v1
     permissions:
       contents: write
       id-token: write
