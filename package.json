@@ -52,7 +52,7 @@
     "lint": "oxlint --report-unused-disable-directives",
     "lint:fix": "oxlint --report-unused-disable-directives --fix",
     "pods": "pnpm --filter react-native-magic-toast-example exec pod-install --quiet",
-    "prepare": "bob build",
+    "prepare": "bob build && husky",
     "release": "release-it",
     "test": "jest",
     "typecheck": "tsc --noEmit"
