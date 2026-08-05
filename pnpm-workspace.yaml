@@ -5,10 +5,12 @@ packages:
 # to direct and transitive dependencies, including frozen-lockfile installs.
 minimumReleaseAge: 20160
 minimumReleaseAgeExclude:
-  # These exact versions were already present on main on 2026-08-04, before
-  # the floor existed.
-  # The exclusions keep that lockfile installable without exempting later
-  # releases.
+  # GSTJ owns the source and publish path for the magic-* packages, so they can
+  # move immediately with the matching Renovate rule.
+  - "magic-*"
+  # These exact third-party versions were already present on main on
+  # 2026-08-04, before the floor existed. The exclusions keep that lockfile
+  # installable without exempting later releases.
   - "@react-native/babel-plugin-codegen@0.86.1"
   - "@react-native/babel-preset@0.86.1"
   - "@react-native/codegen@0.86.1"
@@ -26,12 +28,6 @@ minimumReleaseAgeExclude:
   - "fs-extra@11.4.0"
   - "giget@3.3.1"
   - "ip-address@10.3.1"
-  - "magic-codemods@1.1.0"
-  - "magic-modal@10.2.0"
-  - "magic-oxfmt-config@1.2.0"
-  - "magic-oxlint-config@2.0.0"
-  - "magic-oxlint-plugin@1.2.0"
-  - "magic-tsconfig@1.2.0"
   - "postcss@8.5.23"
   - "release-it@21.0.0"
   - "sax@1.6.1"
