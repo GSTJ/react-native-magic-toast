@@ -1,6 +1,43 @@
 packages:
   - example
 
+# Keep newly published packages out of installs for 14 days. pnpm applies this
+# to direct and transitive dependencies, including frozen-lockfile installs.
+minimumReleaseAge: 20160
+minimumReleaseAgeExclude:
+  # These exact versions were already present on main on 2026-08-04, before
+  # the floor existed.
+  # The exclusions keep that lockfile installable without exempting later
+  # releases.
+  - "@react-native/babel-plugin-codegen@0.86.1"
+  - "@react-native/babel-preset@0.86.1"
+  - "@react-native/codegen@0.86.1"
+  - "@react-native/js-polyfills@0.86.1"
+  - "@react-native/metro-babel-transformer@0.86.1"
+  - "@react-native/metro-config@0.86.1"
+  - "@release-it/conventional-changelog@12.0.0"
+  - "baseline-browser-mapping@2.11.3"
+  - "brace-expansion@1.1.18"
+  - "brace-expansion@5.0.9"
+  - "electron-to-chromium@1.5.396"
+  - "es-toolkit@1.50.0"
+  - "eslint-plugin-safe-jsx@1.3.5"
+  - "fast-uri@3.1.5"
+  - "fs-extra@11.4.0"
+  - "giget@3.3.1"
+  - "ip-address@10.3.1"
+  - "magic-codemods@1.1.0"
+  - "magic-modal@10.2.0"
+  - "magic-oxfmt-config@1.2.0"
+  - "magic-oxlint-config@2.0.0"
+  - "magic-oxlint-plugin@1.2.0"
+  - "magic-tsconfig@1.2.0"
+  - "postcss@8.5.23"
+  - "release-it@21.0.0"
+  - "sax@1.6.1"
+  - "undici@7.29.0"
+  - "yargs@18.1.0"
+
 # React Native's Metro bundler resolves modules by walking up node_modules
 # directories, so the isolated store layout breaks it. Same setting as
 # react-native-magic-modal.
