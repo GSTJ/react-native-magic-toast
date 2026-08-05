@@ -17,7 +17,7 @@ jobs:
   # Lint, format and typecheck come from the shared workflow in GSTJ/magic.
   # Node version is read from .nvmrc and pnpm from the `packageManager` field.
   checkup:
-    uses: GSTJ/magic/.github/workflows/ci.yml@aa331e83282c2794edd474646c671f036dfabee0 # v1
+    uses: GSTJ/magic/.github/workflows/ci.yml@4c640f094849d988c7380e1512f87c46a5408515 # v1.12.3
     with:
       # `pnpm install` already runs `prepare`, which is `bob build`. Running it
       # again is what fails the job if the build breaks.

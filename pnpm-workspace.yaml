@@ -12,23 +12,9 @@ dedupeDirectDeps: true
 overrides:
   "@types/react": "~19.2.14"
   "uuid": "^11.1.1"
-  # GHSA-mh99-v99m-4gvg / CVE-2026-14257. jest's glob@7 and test-exclude@6 pull
-  # minimatch@3, which pins brace-expansion@1, and 1.1.16 is the vulnerable one.
-  # The fix landed in 1.1.17 and caps how many characters a single `expand()`
-  # may accumulate; nothing under that cap behaves differently, and a glob
-  # pattern that would reach 4M characters of output is not one jest is passing.
-  # Scoped to the 1.x range because the tree also carries brace-expansion@5,
-  # which is already past its own patched version.
-  "brace-expansion@1": "^1.1.17"
-
-# pnpm 11 quarantines releases younger than 24h and enforces it on
-# `--frozen-lockfile`, so CI cannot install these without the exemption.
-# Delete each entry once the package ages past the window.
-minimumReleaseAgeExclude:
-  - eslint-plugin-safe-jsx@1.3.5
-  - magic-codemods@1.1.0
-  - magic-modal@10.2.0
-  - magic-oxfmt-config@1.2.0
-  - magic-oxlint-config@2.0.0
-  - magic-oxlint-plugin@1.2.0
-  - magic-tsconfig@1.2.0
+  # GHSA-rgw5-rvv9-x895. Both brace-expansion branches in the tree need their
+  # bounded expansion fix. The 5.0.8 fix for the earlier advisory was incomplete.
+  "brace-expansion@1": "^1.1.18"
+  "brace-expansion@>=4.0.0 <5.0.9": "^5.0.9"
+  # GHSA-7p8r-x3mc-p8w7. commitlint reaches fast-uri through ajv.
+  "fast-uri@>=3.0.0 <3.1.5": "^3.1.5"
