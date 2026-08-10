@@ -18,7 +18,7 @@
     "magic-modal": "^10.2.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "react-native": "0.83.6",
+    "react-native": "0.83.10",
     "react-native-gesture-handler": "~2.30.0",
     "react-native-magic-toast": "workspace:*",
     "react-native-reanimated": "4.3.1",
@@ -32,7 +32,7 @@
     "@babel/runtime": "^7.9.6",
     "@types/react": "~19.2.14",
     "babel-preset-expo": "^55.0.24",
-    "magic-tsconfig": "^1.2.0",
+    "magic-tsconfig": "^1.2.4",
     "typescript": "^5.9.3"
   }
 }

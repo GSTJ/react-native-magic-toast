@@ -23,6 +23,7 @@ describe("MagicToast", () => {
 
     expect(component).toMatchSnapshot();
     expect(component.queryByTestId(TOAST_TEST_ID)).toBeTruthy();
+    component.unmount();
   });
 
   it("renders a success toast", () => {
@@ -40,5 +41,6 @@ describe("MagicToast", () => {
 
     expect(component).toMatchSnapshot();
     expect(component.queryByTestId(TOAST_TEST_ID)).toBeTruthy();
+    component.unmount();
   });
 });

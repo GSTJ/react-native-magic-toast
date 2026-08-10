@@ -55,5 +55,6 @@ describe("public API", () => {
 
     expect(component.queryByTestId(TOAST_TEST_ID)).toBeTruthy();
     expect(component.queryByText("My custom toast")).toBeTruthy();
+    component.unmount();
   });
 });
