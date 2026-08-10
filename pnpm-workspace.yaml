@@ -1,6 +1,13 @@
 packages:
   - example
 
+auditConfig:
+  # pnpm audits published versions, so it cannot see the local patch below.
+  # The timeout regression check is the control for both parser advisories.
+  ignoreGhsas:
+    - GHSA-5p2g-fcmc-qvqq
+    - GHSA-w3rx-r6r6-pgpr
+
 # Keep newly published packages out of installs for 14 days. pnpm applies this
 # to direct and transitive dependencies, including frozen-lockfile installs.
 minimumReleaseAge: 20160
@@ -28,11 +35,19 @@ minimumReleaseAgeExclude:
   - "fs-extra@11.4.0"
   - "giget@3.3.1"
   - "ip-address@10.3.1"
+  - "js-yaml@3.15.1"
+  - "js-yaml@4.3.1"
+  - "nanoid@3.3.18"
   - "postcss@8.5.23"
   - "release-it@21.0.0"
   - "sax@1.6.1"
   - "undici@7.29.0"
   - "yargs@18.1.0"
+
+patchedDependencies:
+  # image-size is archived and has no published fix for its zero-length entry
+  # loops, so Metro uses this narrow parser patch until it replaces the package.
+  image-size@1.2.1: patches/image-size@1.2.1.patch
 
 # React Native's Metro bundler resolves modules by walking up node_modules
 # directories, so the isolated store layout breaks it. Same setting as
@@ -51,3 +66,8 @@ overrides:
   "brace-expansion@>=4.0.0 <5.0.9": "^5.0.9"
   # GHSA-7p8r-x3mc-p8w7. commitlint reaches fast-uri through ajv.
   "fast-uri@>=3.0.0 <3.1.5": "^3.1.5"
+  # GHSA-5p4m-2wfm-xmqj. Jest and Expo reach both maintained js-yaml lines.
+  "js-yaml@3": "^3.15.1"
+  "js-yaml@4": "^4.3.1"
+  # GHSA-2v37-7h3g-55p8. Expo reaches nanoid through PostCSS.
+  "nanoid@3": "^3.3.18"
