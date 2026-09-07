@@ -139,7 +139,7 @@ with a duplicate native module. See the
 
 * release 0.2.1 ([c58904d](https://github.com/GSTJ/react-native-magic-toast/commit/c58904da56aa68a08ebf9c1e3ebd2213fab93f1d))
 
-## [0.2.0](https://github.com/GSTJ/react-native-magic-toast/compare/v0.1.3...v0.2.0) (2023-08-21)
+## [0.2.0](https://github.com/GSTJ/react-native-magic-toast/compare/v0.1.4...v0.2.0) (2023-08-21)
 
 ### Features
 
@@ -154,9 +154,18 @@ with a duplicate native module. See the
 
 ### Documentation
 
+* update README.md ([48a59a2](https://github.com/GSTJ/react-native-magic-toast/commit/48a59a29c3218b838a36e93ec7ac25a2956576f2))
+
+## [0.1.4](https://github.com/GSTJ/react-native-magic-toast/compare/v0.1.3...v0.1.4) (2023-08-21)
+
+### Chores
+
+* release 0.1.4 ([5ee2916](https://github.com/GSTJ/react-native-magic-toast/commit/5ee2916539a7e78594c0d16480354ced60360d2f))
+
+### Documentation
+
 * update readme.md ([760d8ce](https://github.com/GSTJ/react-native-magic-toast/commit/760d8ce0b6a8233534abfeffbe6bdbb40e2ba9d2))
 * update readme.md ([63eb743](https://github.com/GSTJ/react-native-magic-toast/commit/63eb7439de44ebdd1000e036fdf8749e0d3e963b))
-* update README.md ([48a59a2](https://github.com/GSTJ/react-native-magic-toast/commit/48a59a29c3218b838a36e93ec7ac25a2956576f2))
 
 ## [0.1.3](https://github.com/GSTJ/react-native-magic-toast/compare/v0.1.2...v0.1.3) (2022-02-22)
 
