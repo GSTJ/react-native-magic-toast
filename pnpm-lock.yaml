@@ -7,9 +7,11 @@ settings:
 overrides:
   '@types/react': ~19.2.14
   uuid: ^11.1.1
+  '@xmldom/xmldom@>=0.7.0 <0.8.15': ^0.8.15
+  '@xmldom/xmldom@>=0.9.0 <0.9.12': ^0.9.12
   brace-expansion@1: ^1.1.18
   brace-expansion@>=4.0.0 <5.0.9: ^5.0.9
-  fast-uri@>=3.0.0 <3.1.5: ^3.1.5
+  fast-uri@>=3.0.0 <3.1.6: ^3.1.6
   js-yaml@3: ^3.15.1
   js-yaml@4: ^4.3.1
   nanoid@3: ^3.3.18
@@ -1954,12 +1956,12 @@ packages:
   '@ungap/structured-clone@1.3.3':
     resolution: {integrity: sha512-60YRaenCQcVjYEKOcG824+DRGGIQ3VKErcBoAEDJZz5bKIs2ZG+X/H9Nk+Q6EVkwJk5QNApxbrc5QtBSwtrXAg==}
 
-  '@xmldom/xmldom@0.8.13':
-    resolution: {integrity: sha512-KRYzxepc14G/CEpEGc3Yn+JKaAeT63smlDr+vjB8jRfgTBBI9wRj/nkQEO+ucV8p8I9bfKLWp37uHgFrbntPvw==}
+  '@xmldom/xmldom@0.8.15':
+    resolution: {integrity: sha512-/5NV/vDALVFDXgLmfsy9TRCBlKwO2LNBFzpzvb9iIj+jR+eSc6DLYYvVOdivT/jm7MtU6TebYuRmzEOI7w40UA==}
     engines: {node: '>=10.0.0'}
 
-  '@xmldom/xmldom@0.9.10':
-    resolution: {integrity: sha512-A9gOqLdi6cV4ibazAjcQufGj0B1y/vDqYrcuP6d/6x8P27gRS8643Dj9o1dEKtB6O7fwxb2FgBmJS2mX7gpvdw==}
+  '@xmldom/xmldom@0.9.12':
+    resolution: {integrity: sha512-5AXjrcMClTryPe9LgZrygpB1lj7s0S9E0+W+AHaVKAVyHanafK86iPSvG5xHVSp/jC+VH1UXu0TAEmY279xH7A==}
     engines: {node: '>=14.6'}
 
   abab@2.0.6:
@@ -2843,8 +2845,8 @@ packages:
   fast-string-width@3.0.2:
     resolution: {integrity: sha512-gX8LrtNEI5hq8DVUfRQMbr5lpaS4nMIWV+7XEbXk2b8kiQIizgnlr12B4dA3ZEx3308ze0O4Q1R+cHts8kyUJg==}
 
-  fast-uri@3.1.5:
-    resolution: {integrity: sha512-gHwA1O9LDIcKunMKhObS/HimwtehO1nPUECKAu5TpKgaO19fcWEl4bliWe1jWxVFvIXztJjjQ4L8XQ1EU9f7Jw==}
+  fast-uri@3.1.6:
+    resolution: {integrity: sha512-7Ical1vFEMr0onbVzEDIreM22I4khW+fzyQPwvAFWBp1iwdshSZRsL4jjRvPG9JP1uiqMHRto+YU6R2/CzDz5Q==}
 
   fast-wrap-ansi@0.2.2:
     resolution: {integrity: sha512-7F2Fl+TjRSenLqlU3UjSH0iyqopqoZIu7eZVpEirP2g1GtWa2G/ecEmBdgz31+Mxr+ELclgg6sokpSFIQiZ02Q==}
@@ -6385,7 +6387,7 @@ snapshots:
 
   '@expo/plist@0.5.4':
     dependencies:
-      '@xmldom/xmldom': 0.8.13
+      '@xmldom/xmldom': 0.8.15
       base64-js: 1.5.1
       xmlbuilder: 15.1.1
 
@@ -7353,9 +7355,9 @@ snapshots:
 
   '@ungap/structured-clone@1.3.3': {}
 
-  '@xmldom/xmldom@0.8.13': {}
+  '@xmldom/xmldom@0.8.15': {}
 
-  '@xmldom/xmldom@0.9.10': {}
+  '@xmldom/xmldom@0.9.12': {}
 
   abab@2.0.6: {}
 
@@ -7397,7 +7399,7 @@ snapshots:
   ajv@8.20.0:
     dependencies:
       fast-deep-equal: 3.1.3
-      fast-uri: 3.1.5
+      fast-uri: 3.1.6
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
@@ -8285,7 +8287,7 @@ snapshots:
     dependencies:
       fast-string-truncated-width: 3.0.3
 
-  fast-uri@3.1.5: {}
+  fast-uri@3.1.6: {}
 
   fast-wrap-ansi@0.2.2:
     dependencies:
@@ -10018,7 +10020,7 @@ snapshots:
 
   plist@3.1.1:
     dependencies:
-      '@xmldom/xmldom': 0.9.10
+      '@xmldom/xmldom': 0.9.12
       base64-js: 1.5.1
       xmlbuilder: 15.1.1
 
