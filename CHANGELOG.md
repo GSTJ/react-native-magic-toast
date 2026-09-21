@@ -9,6 +9,28 @@ the commits in each range actually say, which for 0.2.2 and 0.3.1 includes
 breaking changes that never made it into the published release bodies. The tags
 themselves were left alone.
 
+## [1.2.2](https://github.com/GSTJ/react-native-magic-toast/compare/v1.2.1...v1.2.2) (2026-09-21)
+
+### Bug Fixes
+
+* **release:** make chore(security) commits bump a patch release ([#30](https://github.com/GSTJ/react-native-magic-toast/issues/30)) ([566f779](https://github.com/GSTJ/react-native-magic-toast/commit/566f77971f286cb71f99be10e897ba7d7a22a706)), references [#27](https://github.com/GSTJ/react-native-magic-toast/issues/27) [#28](https://github.com/GSTJ/react-native-magic-toast/issues/28) [#29](https://github.com/GSTJ/react-native-magic-toast/issues/29)
+
+### Security
+
+* **security:** patch audit findings ([#24](https://github.com/GSTJ/react-native-magic-toast/issues/24)) ([2c88fa3](https://github.com/GSTJ/react-native-magic-toast/commit/2c88fa3e7ba11b6ab3cce925475eb73aef124aad))
+* **security:** patch current dependency advisories ([#27](https://github.com/GSTJ/react-native-magic-toast/issues/27)) ([04a1731](https://github.com/GSTJ/react-native-magic-toast/commit/04a17312b1b4843f8f1778c9f19a139fa55517b3))
+* **security:** patch js-yaml CVE-2026-84375 ([#29](https://github.com/GSTJ/react-native-magic-toast/issues/29)) ([76a873a](https://github.com/GSTJ/react-native-magic-toast/commit/76a873ae496aa801f61312c04e1bd11753cb11a6)), references [#209](https://github.com/GSTJ/react-native-magic-toast/issues/209) [#210](https://github.com/GSTJ/react-native-magic-toast/issues/210)
+* **security:** patch September dependency advisories ([#28](https://github.com/GSTJ/react-native-magic-toast/issues/28)) ([3767811](https://github.com/GSTJ/react-native-magic-toast/commit/376781167393904c93fca49dbe7a2741dfce18bf))
+
+### Chores
+
+* **deps:** exempt first-party magic packages ([#26](https://github.com/GSTJ/react-native-magic-toast/issues/26)) ([358a0c4](https://github.com/GSTJ/react-native-magic-toast/commit/358a0c41f1e8a2353b972c4dc211bdef88410a9a))
+* **deps:** quarantine new package releases ([#25](https://github.com/GSTJ/react-native-magic-toast/issues/25)) ([fcb8a29](https://github.com/GSTJ/react-native-magic-toast/commit/fcb8a29b90795f51106036b1d63854fc10e9181d))
+
+### Documentation
+
+* **readme:** rewrite with real numbers and an R2 hero ([#22](https://github.com/GSTJ/react-native-magic-toast/issues/22)) ([1fd5d4f](https://github.com/GSTJ/react-native-magic-toast/commit/1fd5d4f9d501276faf28f95bfc686b183d4bbaa8))
+
 ## [1.2.1](https://github.com/GSTJ/react-native-magic-toast/compare/v1.2.0...v1.2.1) (2026-07-31)
 
 ### Bug Fixes
