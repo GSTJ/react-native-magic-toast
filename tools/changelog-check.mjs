@@ -14,12 +14,16 @@
 //
 // Three things get checked:
 //
-//   1. the type list agrees with the policy
+//   1. the type list agrees with the policy, including the scoped override
+//      that makes `chore(security)` bump and sits ahead of bare `chore` (see
+//      SCOPED_POLICY below — findTypeEntry() in the library takes the first
+//      array entry whose type matches, so the order is part of the policy)
 //   2. a synthetic history of every type renders the way the policy says,
 //      including the `ci!:` case — `ci` is hidden and its breaking note still
 //      has to surface
 //   3. the recommended bump respects `effect`, so a release of nothing but
-//      `build:` and `chore:` commits cannot come out a minor
+//      `build:` and `chore:` commits cannot come out a minor, and
+//      `chore(security)` alone comes out a patch
 //
 // Then it renders the same history through a sabotaged type list and fails if
 // *that* passes. An assertion that cannot fail is worth nothing.
@@ -63,14 +67,24 @@ const POLICY = {
   test: "hidden",
 };
 
+/**
+ * Overrides layered on POLICY for a specific (type, scope) pair rather than a
+ * whole type. `chore(security)` is the one this repo needs — see
+ * tools/changelog-preset.mjs for the incident that made it necessary.
+ */
+const SCOPED_POLICY = [
+  { type: "chore", scope: "security", effect: "bump", section: "Security" },
+];
+
 // One commit per type, plus three breaking ones spread across a bump type, a
-// changelog type and a hidden type.
+// changelog type and a hidden type, plus the scoped chore(security) override.
 const COMMITS = [
   "feat: add a thing",
   "fix: correct a thing",
   "build: shrink the tarball",
   "refactor: rewrite the internals",
   "chore(deps): bump something",
+  "chore(security): patch a CVE",
   "docs: update the readme",
   "ci: tweak the workflow",
   "style: reformat",
@@ -93,6 +107,12 @@ const SUBJECTS = {
   ci: "tweak the workflow",
   style: "reformat",
   test: "add cases",
+};
+
+// Subject fragment for each SCOPED_POLICY entry, keyed the same way as its
+// `expect` labels above.
+const SCOPED_SUBJECTS = {
+  "chore(security)": "patch a CVE",
 };
 
 const NOTES = {
@@ -204,14 +224,45 @@ const expect = (label, condition) => {
   if (!condition) failures.push(label);
 };
 
-// 1. The type list says what the policy says.
+// 1. The type list says what the policy says. Matched on the bare (unscoped)
+// entry for each type: findTypeEntry() in the library also takes the first
+// entry whose type matches regardless of scope, so a naive `.find` here would
+// pick up the chore(security) override below instead of plain chore and call
+// it correct by accident.
 for (const [type, effect] of Object.entries(POLICY)) {
-  const entry = TYPES.find((candidate) => candidate.type === type);
+  const entry = TYPES.find(
+    (candidate) => candidate.type === type && !candidate.scope,
+  );
   expect(`${type} is in the type list`, entry !== undefined);
   expect(`${type} is "${effect}"`, entry?.effect === effect);
 }
 for (const entry of TYPES) {
   expect(`${entry.type} is covered by the policy`, entry.type in POLICY);
+}
+
+// 1b. Same, for the scoped overrides, plus the ordering they depend on: the
+// library takes the first array entry whose type matches and only checks
+// scope when that entry has one, so an unscoped `chore` ahead of
+// `chore(security)` would shadow it for every commit, scoped or not.
+for (const { type, scope, effect, section } of SCOPED_POLICY) {
+  const scopedEntry = TYPES.find(
+    (candidate) => candidate.type === type && candidate.scope === scope,
+  );
+  const bareIndex = TYPES.findIndex(
+    (candidate) => candidate.type === type && !candidate.scope,
+  );
+  const scopedIndex = TYPES.indexOf(scopedEntry);
+
+  expect(`${type}(${scope}) is in the type list`, scopedEntry !== undefined);
+  expect(`${type}(${scope}) is "${effect}"`, scopedEntry?.effect === effect);
+  expect(
+    `${type}(${scope}) renders under "${section}"`,
+    scopedEntry?.section === section,
+  );
+  expect(
+    `${type}(${scope}) is listed before bare ${type}`,
+    scopedIndex !== -1 && bareIndex !== -1 && scopedIndex < bareIndex,
+  );
 }
 
 /**
@@ -246,6 +297,18 @@ const assessRendering = (output) => {
     );
   }
 
+  // The scoped override renders under its own section, not wherever the bare
+  // type would put it — proof that the commit actually matched the
+  // chore(security) entry and not plain chore.
+  for (const { type, scope, section } of SCOPED_POLICY) {
+    const subject = SCOPED_SUBJECTS[`${type}(${scope})`];
+    check(`${type}(${scope}) renders`, output.includes(subject));
+    check(
+      `${type}(${scope}) renders under "${section}"`,
+      new RegExp(`### ${section}\\n[\\s\\S]*${subject}`).test(output),
+    );
+  }
+
   return found;
 };
 
@@ -265,6 +328,7 @@ const bumps = {
     "docs: update the readme",
   ]),
   hiddenOnly: await bumpFor(["ci: tweak the workflow", "style: reformat"]),
+  securityChore: await bumpFor(["chore(security): patch a CVE"]),
 };
 
 expect("a breaking feat is a major", bumps.breaking === "major");
@@ -277,6 +341,10 @@ expect(
 expect(
   `ci/style alone do not bump (got ${bumps.hiddenOnly})`,
   bumps.hiddenOnly === null,
+);
+expect(
+  `chore(security) alone is a patch (got ${bumps.securityChore})`,
+  bumps.securityChore === "patch",
 );
 
 if (failures.length > 0) {
@@ -318,7 +386,7 @@ if (sabotagedFailures.length === 0) {
 }
 
 console.log(
-  `changelog preset check passed (${COMMITS.length} synthetic commits, 3 breaking; bumps: feat!=${bumps.breaking}, feat=${bumps.feature}, fix=${bumps.fix}, changelog-only=${bumps.changelogOnly}, hidden-only=${bumps.hiddenOnly})`,
+  `changelog preset check passed (${COMMITS.length} synthetic commits, 3 breaking; bumps: feat!=${bumps.breaking}, feat=${bumps.feature}, fix=${bumps.fix}, changelog-only=${bumps.changelogOnly}, hidden-only=${bumps.hiddenOnly}, chore(security)=${bumps.securityChore})`,
 );
 console.log(
   `negative control passed (hiding the visible types breaks ${sabotagedFailures.length} assertions: ${sabotagedFailures.join(", ")})`,

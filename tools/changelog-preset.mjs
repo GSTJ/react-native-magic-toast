@@ -26,6 +26,16 @@
 // letting it drive the version bump, so a pile of `build:` commits still adds
 // up to a patch. Only the `bump` types can raise that, exactly as before.
 //
+// `chore(security)` is the exception, and it has to be listed before the bare
+// `chore` entry below: conventional-changelog-conventionalcommits's
+// findTypeEntry() takes the first array entry whose type matches, and an
+// unscoped entry matches every scope. Put it after `chore` and it never runs.
+// This is not a hypothetical — three chore(security) commits (#27, #28, #29)
+// sat on master for over a month because "chore" alone doesn't bump, and
+// nothing else in the history of this repo bumped in between. A security fix
+// that npm never receives is unshipped; it has to release on its own rather
+// than wait for the next feat/fix to drag it along.
+//
 // Breaking changes are not configurable here and do not need to be. The
 // preset's writer sets `discard = false` the moment a commit carries a note, so
 // a `BREAKING CHANGE:` footer or a `!` renders its own section whatever type it
@@ -40,6 +50,7 @@ export const TYPES = [
   { type: "fix", section: "Bug Fixes", effect: "bump" },
   { type: "perf", section: "Performance Improvements", effect: "bump" },
   { type: "revert", section: "Reverts", effect: "bump" },
+  { type: "chore", scope: "security", section: "Security", effect: "bump" },
   { type: "build", section: "Build System", effect: "changelog" },
   { type: "refactor", section: "Code Refactoring", effect: "changelog" },
   { type: "chore", section: "Chores", effect: "changelog" },
