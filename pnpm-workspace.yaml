@@ -26,8 +26,6 @@ minimumReleaseAgeExclude:
   - "@react-native/metro-config@0.86.1"
   - "@release-it/conventional-changelog@12.0.0"
   - "baseline-browser-mapping@2.11.3"
-  - "brace-expansion@1.1.18"
-  - "brace-expansion@5.0.9"
   - "electron-to-chromium@1.5.396"
   - "es-toolkit@1.50.0"
   - "eslint-plugin-safe-jsx@1.3.5"
@@ -37,7 +35,6 @@ minimumReleaseAgeExclude:
   - "postcss@8.5.23"
   - "release-it@21.0.0"
   - "sax@1.6.1"
-  - "undici@7.29.0"
   - "yargs@18.1.0"
 
 patchedDependencies:
@@ -60,9 +57,9 @@ overrides:
   "@xmldom/xmldom@>=0.7.0 <0.8.15": "^0.8.15"
   "@xmldom/xmldom@>=0.9.0 <0.9.12": "^0.9.12"
   # GHSA-rgw5-rvv9-x895. Both brace-expansion branches in the tree need their
-  # bounded expansion fix. The 5.0.8 fix for the earlier advisory was incomplete.
-  "brace-expansion@1": "^1.1.18"
-  "brace-expansion@>=4.0.0 <5.0.9": "^5.0.9"
+  # bounded expansion fix (bumped again for Dependabot #229 and #230). The 5.0.8 fix for the earlier advisory was incomplete.
+  "brace-expansion@1": "^1.1.21"
+  "brace-expansion@>=4.0.0 <5.0.12": "^5.0.12"
   # GHSA-5jgf-p345-68v8, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf and
   # GHSA-jqff-g426-hqxp, plus the 3.1.6 advisory (Dependabot #213).
   # commitlint reaches fast-uri through ajv.
@@ -73,5 +70,7 @@ overrides:
   # maintained js-yaml lines.
   "js-yaml@3": "^3.15.2"
   "js-yaml@4": "^4.3.2"
+  # Dependabot #217-#224. release-it reaches undici through its GitHub client.
+  "undici@>=7.0.0 <7.29.1": "^7.29.1"
   # GHSA-2v37-7h3g-55p8. Expo reaches nanoid through PostCSS.
   "nanoid@3": "^3.3.18"
