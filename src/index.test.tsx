@@ -41,4 +41,32 @@ describe("MagicToast", () => {
     expect(component).toMatchSnapshot();
     expect(component.queryByTestId(TOAST_TEST_ID)).toBeTruthy();
   });
+
+  it("shows the alert message text", () => {
+    const component = render(
+      <SafeAreaProvider>
+        <MagicModalPortal />
+      </SafeAreaProvider>,
+    );
+
+    act(() => {
+      magicToast.alert("Something went wrong");
+    });
+
+    expect(component.queryByText("Something went wrong")).toBeTruthy();
+  });
+
+  it("shows the success message text", () => {
+    const component = render(
+      <SafeAreaProvider>
+        <MagicModalPortal />
+      </SafeAreaProvider>,
+    );
+
+    act(() => {
+      magicToast.success("All done");
+    });
+
+    expect(component.queryByText("All done")).toBeTruthy();
+  });
 });
