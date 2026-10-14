@@ -12,6 +12,8 @@ auditConfig:
 # to direct and transitive dependencies, including frozen-lockfile installs.
 minimumReleaseAge: 20160
 minimumReleaseAgeExclude:
+  # Security fix, a few hours short of the 14-day window.
+  - source-map-js@1.2.2
   # GSTJ owns the source and publish path for the magic-* packages, so they can
   # move immediately with the matching Renovate rule.
   - "magic-*"
@@ -51,6 +53,10 @@ dedupeDirectDeps: true
 # Carried over from the `resolutions` fields that yarn used in the root and in
 # `example/`.
 overrides:
+  # Dependabot: source-map-js <1.2.2, compression <1.8.2, tinypool <2.1.2 (dev-only tooling).
+  source-map-js@<1.2.2: ^1.2.2
+  compression@<1.8.2: ^1.8.2
+  tinypool@<2.1.2: ^2.1.2
   # GHSA (Dependabot): shell-quote >=1.8.4 <1.11.0 is vulnerable. react-devtools-core
   # (dev-only, via react-native) pulls it in.
   shell-quote@>=1.8.4 <1.11.0: ^1.11.0
