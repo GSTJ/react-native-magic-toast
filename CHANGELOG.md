@@ -9,6 +9,12 @@ the commits in each range actually say, which for 0.2.2 and 0.3.1 includes
 breaking changes that never made it into the published release bodies. The tags
 themselves were left alone.
 
+## [1.2.4](https://github.com/GSTJ/react-native-magic-toast/compare/v1.2.3...v1.2.4) (2026-10-14)
+
+### Bug Fixes
+
+* **deps:** bump source-map-js, compression and tinypool ([#35](https://github.com/GSTJ/react-native-magic-toast/issues/35)) ([9fa1634](https://github.com/GSTJ/react-native-magic-toast/commit/9fa16345906f4ee2949919f670124d158f7e7ab9))
+
 ## [1.2.3](https://github.com/GSTJ/react-native-magic-toast/compare/v1.2.2...v1.2.3) (2026-10-14)
 
 ### Bug Fixes
