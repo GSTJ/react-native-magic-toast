@@ -9,6 +9,17 @@ the commits in each range actually say, which for 0.2.2 and 0.3.1 includes
 breaking changes that never made it into the published release bodies. The tags
 themselves were left alone.
 
+## [1.2.3](https://github.com/GSTJ/react-native-magic-toast/compare/v1.2.2...v1.2.3) (2026-10-14)
+
+### Bug Fixes
+
+* **deps:** override shell-quote to 1.11.0 ([#34](https://github.com/GSTJ/react-native-magic-toast/issues/34)) ([ccde6e2](https://github.com/GSTJ/react-native-magic-toast/commit/ccde6e211789b13368702ea140781a5e1600e243))
+
+### Chores
+
+* **deps:** bump fast-uri and ip-address past their advisories ([#31](https://github.com/GSTJ/react-native-magic-toast/issues/31)) ([44df294](https://github.com/GSTJ/react-native-magic-toast/commit/44df294eb56c6cbd8b15a064f6e7e223b81493a6))
+* **deps:** bump undici and brace-expansion past their advisories ([#32](https://github.com/GSTJ/react-native-magic-toast/issues/32)) ([9a706fc](https://github.com/GSTJ/react-native-magic-toast/commit/9a706fce472dddb7f36e0bbb64f8d38a8ce85f95))
+
 ## [1.2.2](https://github.com/GSTJ/react-native-magic-toast/compare/v1.2.1...v1.2.2) (2026-09-21)
 
 ### Bug Fixes
