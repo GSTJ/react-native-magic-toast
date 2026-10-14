@@ -51,6 +51,9 @@ dedupeDirectDeps: true
 # Carried over from the `resolutions` fields that yarn used in the root and in
 # `example/`.
 overrides:
+  # GHSA (Dependabot): shell-quote >=1.8.4 <1.11.0 is vulnerable. react-devtools-core
+  # (dev-only, via react-native) pulls it in.
+  shell-quote@>=1.8.4 <1.11.0: ^1.11.0
   "@types/react": "~19.2.14"
   "uuid": "^11.1.1"
   # GHSA-6gmq-8vp8-gcm6. Expo's plist tooling reaches both maintained xmldom lines.
