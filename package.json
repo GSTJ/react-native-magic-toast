@@ -54,8 +54,8 @@
     "pods": "pnpm --filter react-native-magic-toast-example exec pod-install --quiet",
     "prepare": "bob build && husky",
     "release": "release-it",
-    "test": "jest && node tools/image-size-security-check.cjs",
-    "test:security": "node tools/image-size-security-check.cjs",
+    "test": "jest && node tools/image-size-security-check.cjs && node tools/dependency-security-check.cjs",
+    "test:security": "node tools/image-size-security-check.cjs && node tools/dependency-security-check.cjs --audit",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
