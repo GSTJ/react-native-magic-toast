@@ -12,6 +12,11 @@ auditConfig:
 # to direct and transitive dependencies, including frozen-lockfile installs.
 minimumReleaseAge: 20160
 minimumReleaseAgeExclude:
+  # Security fixes for Dependabot #240, #242 and #244-#246, plus npm audit.
+  - fast-uri@3.1.9
+  - undici@7.30.1
+  - ip-address@10.7.4
+  - node-forge@1.4.1
   # Security fix, a few hours short of the 14-day window.
   - source-map-js@1.2.2
   # GSTJ owns the source and publish path for the magic-* packages, so they can
@@ -53,6 +58,8 @@ dedupeDirectDeps: true
 # Carried over from the `resolutions` fields that yarn used in the root and in
 # `example/`.
 overrides:
+  # npm audit: Expo certificate tooling.
+  "node-forge@<1.4.1": "^1.4.1"
   # Dependabot: source-map-js <1.2.2, compression <1.8.2, tinypool <2.1.2 (dev-only tooling).
   source-map-js@<1.2.2: ^1.2.2
   compression@<1.8.2: ^1.8.2
@@ -71,15 +78,16 @@ overrides:
   "brace-expansion@>=4.0.0 <5.0.12": "^5.0.12"
   # GHSA-5jgf-p345-68v8, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf and
   # GHSA-jqff-g426-hqxp, plus the 3.1.6 advisory (Dependabot #213).
+  # Dependabot #240, #244-#246 require 3.1.9.
   # commitlint reaches fast-uri through ajv.
-  "fast-uri@>=3.0.0 <3.1.7": "^3.1.7"
-  # Dependabot #215. release-it reaches ip-address through socks.
-  "ip-address@>=10.0.0 <10.5.1": "^10.5.1"
+  "fast-uri@>=3.0.0 <3.1.9": "^3.1.9"
+  # Dependabot #215 and GHSA-rxp7-6hxx-x8q5. release-it reaches ip-address through socks.
+  "ip-address@>=10.0.0 <10.7.4": "^10.7.4"
   # GHSA-5p4m-2wfm-xmqj, GHSA-2883-xcg3-v3hh. Jest and Expo reach both
   # maintained js-yaml lines.
   "js-yaml@3": "^3.15.2"
   "js-yaml@4": "^4.3.2"
-  # Dependabot #217-#224. release-it reaches undici through its GitHub client.
-  "undici@>=7.0.0 <7.29.1": "^7.29.1"
+  # Dependabot #217-#224 and #242. release-it reaches undici through its GitHub client.
+  "undici@>=7.0.0 <7.30.1": "^7.30.1"
   # GHSA-2v37-7h3g-55p8. Expo reaches nanoid through PostCSS.
   "nanoid@3": "^3.3.18"
