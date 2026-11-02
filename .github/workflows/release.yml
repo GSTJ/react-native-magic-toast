@@ -32,7 +32,7 @@ jobs:
     with:
       build-command: pnpm run build
       test-command: pnpm test
-      extra-command: pnpm run changelog:check
+      extra-command: pnpm run changelog:check && pnpm run test:security
       turbo-cache: false
 
   plan:

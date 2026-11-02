@@ -27,6 +27,6 @@ jobs:
       # CHANGELOG.md, and getting it wrong drops commits with no error
       # anywhere. This renders a synthetic history through it and fails if a
       # breaking change goes missing — including one hanging off a hidden type.
-      extra-command: pnpm run changelog:check
+      extra-command: pnpm run changelog:check && pnpm run test:security
       # No turbo in this repo.
       turbo-cache: false
