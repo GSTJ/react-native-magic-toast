@@ -32,6 +32,19 @@ configuration keep the existing breaking-change controls.
   array merging retain their behavior. CommonJS, UMD and source entry points
   receive the same patch. Remove it once a published fix passes these checks.
 
+## node-forge 1.4.3
+
+Expo certificate tooling uses the scoped override for node-forge below 1.4.3.
+The exact 1.4.3 quarantine exception admits the security fix without exempting
+future releases. The upstream changes reject small-order Ed25519 keys, reject
+unsupported TLS compression through the error callback, guard handshakes after
+session closure and replace quadratic HTTP whitespace trimming with a loop.
+The dependency check exercises those inputs and a valid signature under its
+existing subprocess timeout. These changes affect development tooling only.
+
+Upstream regression vectors and fixes:
+https://github.com/digitalbazaar/forge/compare/v1.4.1...v1.4.3
+
 ## Audit gate
 
 Run `pnpm run test:security`. CI runs this alongside the full test suite,

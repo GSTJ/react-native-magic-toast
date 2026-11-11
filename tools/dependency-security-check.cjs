@@ -28,6 +28,108 @@ if (process.argv.includes("--child")) {
       "PASS deepmerge target/source/nested prototype poisoning and ordinary merges",
     );
 
+    // Upstream 1.4.3 regression vectors, bounded by the parent timeout.
+    const forge = require("node-forge");
+    assert.equal(require("node-forge/package.json").version, "1.4.3");
+    const identity = Buffer.concat([Buffer.from([1]), Buffer.alloc(31)]);
+    const signature = Buffer.concat([identity, Buffer.alloc(32)]);
+    for (const message of ["", "hello", "admin=true"]) {
+      assert.equal(
+        forge.ed25519.verify({
+          message,
+          encoding: "utf8",
+          signature,
+          publicKey: identity,
+        }),
+        false,
+      );
+    }
+    const keys = forge.ed25519.generateKeyPair({ seed: Buffer.alloc(32, 7) });
+    const signed = forge.ed25519.sign({
+      message: "valid",
+      encoding: "utf8",
+      privateKey: keys.privateKey,
+    });
+    assert.equal(
+      forge.ed25519.verify({
+        message: "valid",
+        encoding: "utf8",
+        signature: signed,
+        publicKey: keys.publicKey,
+      }),
+      true,
+    );
+    const certificates = require("@expo/code-signing-certificates");
+    const keyPair = certificates.generateKeyPair();
+    const certificate = certificates.generateSelfSignedCodeSigningCertificate({
+      keyPair,
+      validityNotBefore: new Date("2026-01-01"),
+      validityNotAfter: new Date("2027-01-01"),
+      commonName: "local-security-test",
+    });
+    certificates.validateSelfSignedCertificate(certificate, keyPair);
+    assert.equal(
+      typeof certificates.signBufferRSASHA256AndVerify(
+        keyPair.privateKey,
+        certificate,
+        Buffer.from("certificate regression"),
+      ),
+      "string",
+    );
+    const errors = [];
+    const connection = () =>
+      forge.tls.createConnection({
+        server: false,
+        connected() {},
+        tlsDataReady() {},
+        dataReady() {},
+        closed() {},
+        error(_client, error) {
+          errors.push(error);
+        },
+      });
+    const closed = connection();
+    closed.handshake();
+    closed.process(Buffer.from("15030100020100", "hex").toString("binary"));
+    assert.equal(closed.session, null);
+    closed.process(Buffer.from("160301000402000000", "hex").toString("binary"));
+    const client = connection();
+    client.handshake();
+    const hello = forge.util.createBuffer();
+    hello.putBytes(`\u0003\u0001${"r".repeat(32)}\u0000\u0000/\u00FF`);
+    const handshake = forge.util.createBuffer();
+    handshake.putByte(2);
+    handshake.putInt24(hello.length());
+    handshake.putBytes(hello.getBytes());
+    const record = forge.util.createBuffer();
+    record.putBytes("\u0016\u0003\u0001");
+    record.putInt16(handshake.length());
+    record.putBytes(handshake.getBytes());
+    client.process(record.getBytes());
+    assert.ok(
+      errors.some(
+        (error) => error.message === "Unsupported compression method.",
+      ),
+    );
+    require("node-forge/lib/http");
+    const whitespace = "\t ".repeat(256 * 1024);
+    const response = forge.http.createResponse();
+    assert.equal(
+      response.readHeader(
+        forge.util.createBuffer(
+          `HTTP/1.1 200 OK\r\nX-Test: a${whitespace}b${
+            whitespace
+          }\r\nSet-Cookie: a=b${whitespace}c; path=/\r\n\r\n`,
+        ),
+      ),
+      true,
+    );
+    assert.equal(response.getField("X-Test"), `a${whitespace}b`);
+    assert.equal(response.getCookies()[0].value, `b${whitespace}c`);
+    console.log(
+      "PASS node-forge forged signatures, valid signing, TLS crash inputs and bounded HTTP trimming",
+    );
+
     const { z } = require("zod");
     let parsed = 0;
     const item = z.string().refine(() => ++parsed);
