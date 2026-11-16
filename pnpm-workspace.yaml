@@ -16,7 +16,7 @@ minimumReleaseAgeExclude:
   # Required transitive dependencies of the glob/minimatch security update.
   - "@isaacs/nonrecursive-glob-match@1.0.1"
   - path-scurry@3.0.0
-  - basic-ftp@6.2.1
+  - basic-ftp@6.2.4
   - zod@4.6.6
   - glob@14.0.2
   - minimatch@11.0.1
@@ -67,7 +67,7 @@ dedupeDirectDeps: true
 # `example/`.
 overrides:
   # Major tooling updates, covered by dependency-security-check.cjs.
-  "basic-ftp@<6.2.1": "6.2.1"
+  "basic-ftp@<6.2.4": "6.2.4"
   "zod@<4.6.6": "4.6.6"
   "glob@>=9 <14.0.2": "14.0.2"
   "minimatch@>=9 <11.0.1": "11.0.1"

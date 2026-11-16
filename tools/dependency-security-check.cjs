@@ -218,6 +218,17 @@ if (process.argv.includes("--child")) {
     assert.deepEqual(files.sort(), ["src/index.tsx"]);
     assert.deepEqual(modernGlob.globSync("src/index.tsx"), ["src/index.tsx"]);
     const ftp = require("basic-ftp");
+    assert.equal(require("basic-ftp/package.json").version, "6.2.4");
+    for (const name of ["__proto__", "constructor", "toString"]) {
+      const [file] = ftp.parseList(
+        `${name}=ignored;type=file;size=12; file.txt`,
+      );
+      assert.equal(file.name, "file.txt");
+      assert.equal(file.size, 12);
+    }
+    console.log(
+      "PASS basic-ftp inherited MLSD facts do not crash directory listings",
+    );
     assert.equal(typeof new ftp.Client().downloadTo, "function");
     const listing = ftp.parseList(
       "-rw-r--r-- 1 owner group 12 Jan 01 2026 file.txt",
