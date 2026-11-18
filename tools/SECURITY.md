@@ -61,8 +61,19 @@ fails on every advisory except these exact, tested cases:
   and constructs the attack pattern under the timeout. Modern minimatch uses
   the published fix and a bounded expansion regression.
 
+- GHSA-fc5q-39xc-vjpf on picomatch 2.3.2 and 4.0.5: local parser patches
+  treat wildcard-bearing single-branch repeated extglobs as literal patterns,
+  matching the parser's handling of risky overlapping branches. The check
+  verifies SHA256 for every hoisted/nested parser and runs attack inputs in
+  separate processes with a 3-second timeout. Ordinary recursive globs,
+  literal alternatives, character classes and the safe nested `+(*(a))`
+  reduction must still match. Every reported
+  audit dependency path must resolve to one of those verified copies.
+  Remove these patches once a published fix passes the same regressions.
+  Advisory: https://github.com/advisories/GHSA-fc5q-39xc-vjpf
+
 No new audit ignores are added to pnpm-workspace.yaml. Raw `pnpm audit` still
-reports these two version-based findings. The existing image-size advisory
+reports these version-based findings, including the locally patched picomatch. The existing image-size advisory
 exceptions retain their parser timeout controls.
 
 The 14-day quarantine remains enabled. Only exact security update versions

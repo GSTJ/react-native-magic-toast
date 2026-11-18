@@ -52,6 +52,9 @@ minimumReleaseAgeExclude:
   - "yargs@18.1.0"
 
 patchedDependencies:
+  # GHSA-fc5q-39xc-vjpf: single-branch repeated extglob backtracking.
+  picomatch@2.3.2: patches/picomatch@2.3.2.patch
+  picomatch@4.0.5: patches/picomatch@4.0.5.patch
   # image-size is archived and has no published fix for its zero-length entry
   # loops, so Metro uses this narrow parser patch until it replaces the package.
   deepmerge@4.3.1: patches/deepmerge@4.3.1.patch
