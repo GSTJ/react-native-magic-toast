@@ -1,0 +1,28 @@
+--- a/lib/parse.js
++++ b/lib/parse.js
+@@ -295,6 +295,25 @@
+       : constants.DEFAULT_MAX_EXTGLOB_RECURSION;
+ 
+   const branches = splitTopLevel(body).map(branch => branch.trim());
++
++  // A wildcard inside a single repeated branch also creates nested
++  // quantifiers, e.g. +(*) and +(*a). Keep these literal like the
++  // already-rejected overlapping multi-branch forms. Escapes and
++  // character classes do not introduce wildcard quantifiers.
++  if (branches.length === 1) {
++    let bracket = false;
++    let escaped = false;
++    for (let index = 0; index < branches[0].length; index++) {
++      const ch = branches[0][index];
++      if (escaped) { escaped = false; continue; }
++      if (ch === '\\') { escaped = true; continue; }
++      if (ch === '[') { bracket = true; continue; }
++      if (ch === ']') { bracket = false; continue; }
++      if (!bracket && (ch === '*' || ch === '?') && branches[0][index + 1] !== '(') {
++        return { risky: true };
++      }
++    }
++  }
+ 
+   if (branches.length > 1) {
+     if (

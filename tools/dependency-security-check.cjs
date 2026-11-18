@@ -3,6 +3,16 @@ const { spawnSync } = require("node:child_process");
 const { createRequire } = require("node:module");
 const { readFileSync } = require("node:fs");
 
+const verifyLegacyFinding = (finding) => {
+  const expected = {
+    "GHSA-gcqx-w48m-w2h4": ["deepmerge", "4.3.1"],
+    "GHSA-g3hv-75wg-m249": ["minimatch", "3.1.5"],
+  }[finding.github_advisory_id];
+  assert.ok(expected, `Unmitigated advisory: ${finding.github_advisory_id}`);
+  assert.equal(finding.module_name, expected[0]);
+  for (const path of finding.findings) assert.equal(path.version, expected[1]);
+};
+
 // Run attack inputs in a separate process so a regression fails within a bound.
 if (process.argv.includes("--child")) {
   (async () => {
@@ -238,29 +248,26 @@ if (process.argv.includes("--child")) {
     console.log(
       "PASS glob async/sync and basic-ftp Client/listing compatibility",
     );
+    const verifyPicomatch = require("./picomatch-security-check.cjs");
+
     // The scanner cannot see patched bytes and applies a v10-only advisory to v3.
     // Never suppress another package/version under either advisory.
     if (process.argv.includes("--audit")) {
       const audit = spawnSync("pnpm", ["audit", "--json"], {
         encoding: "utf8",
         maxBuffer: 16 * 1024 * 1024,
+        timeout: 60000,
       });
       assert.ifError(audit.error);
       assert.ok(audit.status === 0 || audit.status === 1);
       const report = JSON.parse(audit.stdout);
-      assert.ok(report.advisories);
+      assert.ok(report.metadata && report.advisories);
       for (const finding of Object.values(report.advisories)) {
-        const expected = {
-          "GHSA-gcqx-w48m-w2h4": ["deepmerge", "4.3.1"],
-          "GHSA-g3hv-75wg-m249": ["minimatch", "3.1.5"],
-        }[finding.github_advisory_id];
-        assert.ok(
-          expected,
-          `Unmitigated advisory: ${finding.github_advisory_id}`,
-        );
-        assert.equal(finding.module_name, expected[0]);
-        for (const path of finding.findings)
-          assert.equal(path.version, expected[1]);
+        if (finding.github_advisory_id === "GHSA-fc5q-39xc-vjpf") {
+          verifyPicomatch(finding);
+        } else {
+          verifyLegacyFinding(finding);
+        }
       }
       const config = readFileSync("pnpm-workspace.yaml", "utf8");
       assert.ok(
@@ -280,7 +287,7 @@ if (process.argv.includes("--child")) {
     [__filename, "--child", ...process.argv.slice(2)],
     {
       encoding: "utf8",
-      timeout: 15000,
+      timeout: process.argv.includes("--audit") ? 75000 : 15000,
       maxBuffer: 1024 * 1024,
     },
   );
